@@ -1,0 +1,14 @@
+E:\TNAI\TNAI\TNAI.Model\bin\Debug\net6.0\TNAI.Model.deps.json
+E:\TNAI\TNAI\TNAI.Model\bin\Debug\net6.0\TNAI.Model.runtimeconfig.json
+E:\TNAI\TNAI\TNAI.Model\bin\Debug\net6.0\TNAI.Model.dll
+E:\TNAI\TNAI\TNAI.Model\bin\Debug\net6.0\TNAI.Model.pdb
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.csproj.AssemblyReference.cache
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.GeneratedMSBuildEditorConfig.editorconfig
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.AssemblyInfoInputs.cache
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.AssemblyInfo.cs
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.csproj.CoreCompileInputs.cache
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.dll
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\refint\TNAI.Model.dll
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.pdb
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\TNAI.Model.genruntimeconfig.cache
+E:\TNAI\TNAI\TNAI.Model\obj\Debug\net6.0\ref\TNAI.Model.dll

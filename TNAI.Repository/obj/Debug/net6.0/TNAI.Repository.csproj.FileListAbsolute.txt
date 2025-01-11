@@ -1,0 +1,17 @@
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Repository.deps.json
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Repository.runtimeconfig.json
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Repository.dll
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Repository.pdb
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Model.dll
+E:\TNAI\TNAI\TNAI.Repository\bin\Debug\net6.0\TNAI.Model.pdb
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.csproj.AssemblyReference.cache
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.GeneratedMSBuildEditorConfig.editorconfig
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.AssemblyInfoInputs.cache
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.AssemblyInfo.cs
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.csproj.CoreCompileInputs.cache
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Rep.A71803BA.Up2Date
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.dll
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\refint\TNAI.Repository.dll
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.pdb
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\TNAI.Repository.genruntimeconfig.cache
+E:\TNAI\TNAI\TNAI.Repository\obj\Debug\net6.0\ref\TNAI.Repository.dll

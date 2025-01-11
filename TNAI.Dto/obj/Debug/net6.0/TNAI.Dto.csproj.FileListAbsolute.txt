@@ -1,0 +1,11 @@
+E:\TNAI\TNAI\TNAI.Dto\bin\Debug\net6.0\TNAI.Dto.deps.json
+E:\TNAI\TNAI\TNAI.Dto\bin\Debug\net6.0\TNAI.Dto.dll
+E:\TNAI\TNAI\TNAI.Dto\bin\Debug\net6.0\TNAI.Dto.pdb
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.GeneratedMSBuildEditorConfig.editorconfig
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.AssemblyInfoInputs.cache
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.AssemblyInfo.cs
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.csproj.CoreCompileInputs.cache
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.dll
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\refint\TNAI.Dto.dll
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\TNAI.Dto.pdb
+E:\TNAI\TNAI\TNAI.Dto\obj\Debug\net6.0\ref\TNAI.Dto.dll
