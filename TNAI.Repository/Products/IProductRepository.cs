@@ -11,6 +11,7 @@ namespace TNAI.Repository.Products
     {
         Task<Product?> GetProductByIdAsync(int id);
         Task<List<Product>> GetAllProductsAsync();
+        Task<List<Product>> GetProductByCategoryIdAsync(int categoryId);
         Task<bool> SaveProductAsync(Product product);
         Task<bool> DeleteProductAsync(int id);
     }

@@ -1,0 +1,36 @@
+﻿@using System.Collections
+@using TNAI.Model.Entities
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="row my-4">
+    <div class="col">
+            <h1 class="display-4">Z-kom</h1>
+    </div>
+    <div class="col-3 d-flex flex-column justify-content-end">
+        <p class="mb-0">Kategorię</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @RenderBody() <!-- The actual page content goes here -->
+    </div>
+    <aside class="col-3">
+        <div class="vstack gap-4">
+            
+        @if (@ViewData["categories"] != null)
+        {
+            foreach (var x in ((List<Category>)@ViewData["categories"])!)
+            {
+                <a class="card nav-link text-body" asp-area="" asp-controller="Home" asp-action="Category" asp-route-categoryId="@x.Id">
+                    <div class="card-body">
+                        <p class="card-title mb-0 text-decoration-none">@x.Name</p>
+                    </div>
+                </a>
+            }
+        }
+        </div>
+    </aside>
+</div>

@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TNAI.Model\TNAI.Model.csproj" />
+  </ItemGroup>
+
 </Project>
