@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "category",
-        "Type": "TNAI.Dto.Catrgories.CategoryInputDto",
+        "Type": "TNAI.Dto.Categories.CategoryInputDto",
         "IsRequired": true
       }
     ],
@@ -56,7 +56,7 @@
       },
       {
         "Name": "category",
-        "Type": "TNAI.Dto.Catrgories.CategoryInputDto",
+        "Type": "TNAI.Dto.Categories.CategoryInputDto",
         "IsRequired": true
       }
     ],
@@ -98,7 +98,7 @@
     "Parameters": [
       {
         "Name": "order",
-        "Type": "TNAI.Dto.Catrgories.OrderInputDto",
+        "Type": "TNAI.Dto.Orders.OrderInputDto",
         "IsRequired": true
       }
     ],
@@ -135,7 +135,7 @@
       },
       {
         "Name": "order",
-        "Type": "TNAI.Dto.Catrgories.OrderInputDto",
+        "Type": "TNAI.Dto.Orders.OrderInputDto",
         "IsRequired": true
       }
     ],
@@ -177,7 +177,7 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "TNAI.Dto.Catrgories.ProductInputDto",
+        "Type": "TNAI.Dto.Products.ProductInputDto",
         "IsRequired": true
       }
     ],
@@ -214,7 +214,7 @@
       },
       {
         "Name": "product",
-        "Type": "TNAI.Dto.Catrgories.ProductInputDto",
+        "Type": "TNAI.Dto.Products.ProductInputDto",
         "IsRequired": true
       }
     ],

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TNAI.Dto.Catrgories;
+using TNAI.Dto.Products;
 using TNAI.Model.Entities;
 using TNAI.Repository.Products;
 
@@ -48,7 +48,9 @@ namespace TNAI_API.Controllers
             var newProduct = new Product()
             {
                 Name = product.Name,
-                CategoryId = product.CategoryId
+                Description = product.Description,
+                CategoryId = product.CategoryId,
+                ImageFile = product.ImageFile
             };
 
             var result = await _productRepository.SaveProductAsync(newProduct);
@@ -68,6 +70,8 @@ namespace TNAI_API.Controllers
             if (existingProduct == null) return NotFound();
 
             existingProduct.Name = product.Name;
+            existingProduct.Description = product.Description;
+            existingProduct.ImageFile = product.ImageFile;
 
             var result = await _productRepository.SaveProductAsync(existingProduct);
             if (!result) throw new Exception("ERROR upt");

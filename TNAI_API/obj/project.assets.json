@@ -902,6 +902,9 @@
       "TNAI.Dto/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "TNAI.Model": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/TNAI.Dto.dll": {}
         },
@@ -2557,23 +2560,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Bartek\\.nuget\\packages\\": {},
+    "C:\\Users\\igaku\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\TNAI\\TNAI\\TNAI_API\\TNAI_API.csproj",
+      "projectUniqueName": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI_API\\TNAI_API.csproj",
       "projectName": "TNAI_API",
-      "projectPath": "E:\\TNAI\\TNAI\\TNAI_API\\TNAI_API.csproj",
-      "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
-      "outputPath": "E:\\TNAI\\TNAI\\TNAI_API\\obj\\",
+      "projectPath": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI_API\\TNAI_API.csproj",
+      "packagesPath": "C:\\Users\\igaku\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\igaku\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2582,21 +2585,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\TNAI\\TNAI\\TNAI.Dto\\TNAI.Dto.csproj": {
-              "projectPath": "E:\\TNAI\\TNAI\\TNAI.Dto\\TNAI.Dto.csproj"
+            "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Dto\\TNAI.Dto.csproj": {
+              "projectPath": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Dto\\TNAI.Dto.csproj"
             },
-            "E:\\TNAI\\TNAI\\TNAI.Model\\TNAI.Model.csproj": {
-              "projectPath": "E:\\TNAI\\TNAI\\TNAI.Model\\TNAI.Model.csproj"
+            "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Model\\TNAI.Model.csproj": {
+              "projectPath": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Model\\TNAI.Model.csproj"
             },
-            "E:\\TNAI\\TNAI\\TNAI.Repository\\TNAI.Repository.csproj": {
-              "projectPath": "E:\\TNAI\\TNAI\\TNAI.Repository\\TNAI.Repository.csproj"
+            "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Repository\\TNAI.Repository.csproj": {
+              "projectPath": "C:\\Users\\igaku\\Source\\Repos\\TNAI\\TNAI.Repository\\TNAI.Repository.csproj"
             }
           }
         }
@@ -2609,8 +2611,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
-      }
+        "auditMode": "all"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net6.0": {
@@ -2662,8 +2665,40 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.IdentityModel.JsonWebTokens' 6.8.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "libraryId": "Microsoft.IdentityModel.JsonWebTokens",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1904",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Drawing.Common' 4.7.0 has a known critical severity vulnerability, https://github.com/advisories/GHSA-rxg9-xrhp-64gj",
+      "libraryId": "System.Drawing.Common",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.IdentityModel.Tokens.Jwt' 6.8.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-59j7-ghrg-fj52",
+      "libraryId": "System.IdentityModel.Tokens.Jwt",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

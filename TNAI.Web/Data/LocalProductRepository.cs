@@ -17,6 +17,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Samsung Galaxy S25 Ultra 12/512GB",
          Description = "Opis tego produktu",
          Price = 4500,
+         ImageFile = "samsungGalaxyS25.jpg",
          CategoryId = 0,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 0) 
      },
@@ -26,6 +27,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Hisense 65U6NQ 65\" MINILED 4K VIDAA Dolby Vision Dolby Atmos",
          Description = "Opis tego produktu",
          Price = 2365,
+         ImageFile = "hisense65U6NQ.jpg",
          CategoryId = 1,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 1) 
      },
@@ -35,6 +37,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Philips 55PML9008 55\" MINILED 4K",
          Description = "Opis tego produktu",
          Price = 3123,
+         ImageFile = "philips55PML9008.jpg",
          CategoryId = 1,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 1) 
      },
@@ -44,6 +47,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Samsung Galaxy Buds3 Pro",
          Description = "Opis tego produktu",
          Price = 231,
+         ImageFile = "samsungGalaxyBuds3Pro.jpg",
          CategoryId = 2,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 2) 
      },
@@ -53,6 +57,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Xiaomi Redmi Note 14 Pro 8/256GB",
          Description = "Opis tego produktu",
          Price = 3423,
+         ImageFile = "redmiNote14Pro.jpg",
          CategoryId = 1,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 1) 
      },
@@ -62,6 +67,7 @@ public class LocalProductRepository : IProductRepository
          Name = "Logitech G PRO X",
          Description = "Opis tego produktu",
          Price = 1000,
+         ImageFile = "logitechGProX.jpg",
          CategoryId = 2,
          Category = LocalCategoryRepository._dummyCategory.Find(c => c.Id == 2) 
      },

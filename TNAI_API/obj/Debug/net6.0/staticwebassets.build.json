@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "leeikxG1wGEleRYfcOcFIVROz5vatyH9vtl8HsUmSuY=",
+  "Hash": "Z8Wf41ns1Pct8fCjeN+8BXtbHVhP3I1ISq3eApn5xHo=",
   "Source": "TNAI_API",
   "BasePath": "_content/TNAI_API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

@@ -1,4 +1,4 @@
-using TNAI.Dto.Catrgories;
+using TNAI.Dto.Products;
 using TNAI.Model.Entities;
 
 namespace TNAI.Web.Models

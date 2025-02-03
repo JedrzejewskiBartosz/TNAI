@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
-using TNAI.Dto.Catrgories;
+using TNAI.Dto.Categories;
 using TNAI.Model.Entities;
 using TNAI.Repository.Categories;
 

@@ -529,6 +529,9 @@
         }
       },
       "TNAI.Dto/1.0.0": {
+        "dependencies": {
+          "TNAI.Model": "1.0.0"
+        },
         "runtime": {
           "TNAI.Dto.dll": {
             "assemblyVersion": "1.0.0",

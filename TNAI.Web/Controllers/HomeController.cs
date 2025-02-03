@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TNAI.Dto.Catrgories;
+using TNAI.Dto.Products;
 using TNAI.Repository.Categories;
 using TNAI.Repository.Products;
 using TNAI.Web.Models;

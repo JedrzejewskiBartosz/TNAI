@@ -19,7 +19,6 @@ namespace TNAI.Model.Configurations
             builder.Property(x => x.Description).HasMaxLength(5000);
 
             builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
-
             builder.HasMany(x => x.Orders).WithMany(x => x.Products);
         }
     }

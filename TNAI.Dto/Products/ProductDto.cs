@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TNAI.Model.Entities;
 
-namespace TNAI.Dto.Catrgories
+namespace TNAI.Dto.Products
 {
     public class ProductDto
     {
@@ -17,15 +11,16 @@ namespace TNAI.Dto.Catrgories
             Description = p.Description;
             Price = p.Price;
             CategoryId = p.CategoryId;
+            ImageFile = p.ImageFile;
             CategoryName = p.Category.Name;
         }
-        
-        public int Id { get; set; } 
+
+        public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
-        
+        public string? ImageFile { get; set; }
         public string CategoryName { get; set; }
 
     }

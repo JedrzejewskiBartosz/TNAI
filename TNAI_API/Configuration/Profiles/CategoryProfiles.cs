@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TNAI.Dto.Catrgories;
+using TNAI.Dto.Categories;
 using TNAI.Model.Entities;
 
 namespace TNAI_API.Configuration.Profiles

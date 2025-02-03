@@ -12,6 +12,7 @@ namespace TNAI.Model.Entities
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
+        public string? ImageFile { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
         public virtual ICollection<Order> Orders { get; set; }

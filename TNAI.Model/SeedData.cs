@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TNAI.Model.Entities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TNAI.Model
 {
@@ -23,12 +19,17 @@ namespace TNAI.Model
             context.Categories.AddRange(
                 new Category()
                 {
-                    Name = "Komp",
+                    Name = "Telefony"
                 },
                 new Category()
                 {
-                    Name = "Tablet",
-                });
+                    Name = "Telewizory"
+                },
+                new Category()
+                {
+                    Name = "Słuchawki"
+                }
+            );
 
             context.SaveChanges();
 
@@ -40,23 +41,54 @@ namespace TNAI.Model
             context.Products.AddRange(
                 new Product()
                 {
-                    Name = "DELL",
-                    Price = 10,
-                    CategoryId = context.Categories.Where(x => x.Name == "Komp").First().Id,
+                    Name = "Samsung Galaxy S25 Ultra 12/512GB",
+                    Description = "Opis tego produktu",
+                    Price = 4500,
+                    ImageFile = "samsungGalaxyS25.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Telefony").First().Id,
                 },
                 new Product()
                 {
-                    Name = "SAMSUNG",
-                    Price = 20,
-                    CategoryId = context.Categories.Where(x => x.Name == "Tablet").First().Id,
+                    Name = "Hisense 65U6NQ 65\" MINILED 4K VIDAA Dolby Vision Dolby Atmos",
+                    Description = "Opis tego produktu",
+                    Price = 2365,
+                    ImageFile = "hisense65U6NQ.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Telewizory").First().Id,
+
                 },
                 new Product()
                 {
-                    Name = "BenQ",
-                    Price = 20,
-                    CategoryId = context.Categories.Where(x => x.Name == "Tablet").First().Id,
+                    Name = "Philips 55PML9008 55\" MINILED 4K",
+                    Description = "Opis tego produktu",
+                    Price = 3123,
+                    ImageFile = "philips55PML9008.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Telewizory").First().Id,
+                },
+                new Product()
+                {
+                    Name = "Samsung Galaxy Buds3 Pro",
+                    Description = "Opis tego produktu",
+                    Price = 231,
+                    ImageFile = "samsungGalaxyBuds3Pro.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Słuchawki").First().Id,
+                },
+                new Product()
+                {
+                    Name = "Xiaomi Redmi Note 14 Pro 8/256GB",
+                    Description = "Opis tego produktu",
+                    Price = 3423,
+                    ImageFile = "redmiNote14Pro.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Telewizory").First().Id,
+                },
+                new Product()
+                {
+                    Name = "Logitech G PRO X",
+                    Description = "Opis tego produktu",
+                    Price = 1000,
+                    ImageFile = "logitechGProX.jpg",
+                    CategoryId = context.Categories.Where(x => x.Name == "Słuchawki").First().Id,
                 }
-                );
+            );
 
             context.SaveChanges();    
         }

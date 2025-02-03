@@ -29,11 +29,12 @@ namespace TNAI.Repository.Products
             return products;
         }
 
-        public Task<List<Product>> GetProductByCategoryIdAsync(int categoryId)
+        public async Task<List<Product>> GetProductByCategoryIdAsync(int categoryId)
         {
-            throw new NotImplementedException();
-        }
+            var products = await DbContext.Products.Where(x => x.CategoryId == categoryId).ToListAsync();
 
+            return products;
+        }
 
         public async Task<bool> SaveProductAsync(Product product)
         {
