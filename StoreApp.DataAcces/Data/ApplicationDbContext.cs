@@ -32,15 +32,66 @@ namespace StoreApp.DataAcces.Data
 
 
             modelBuilder.Entity<CategoryModel>().HasData(
-                new CategoryModel { Id = 1, Name = "Category 1", DisplayOrder = 1 },
-                new CategoryModel { Id = 2, Name = "Category 2", DisplayOrder = 2 },
-                new CategoryModel { Id = 3, Name = "Category 3", DisplayOrder = 3 }
+                new CategoryModel { Id = 1, Name = "Telefony", DisplayOrder = 1 },
+                new CategoryModel { Id = 2, Name = "Słuchawki", DisplayOrder = 2 },
+                new CategoryModel { Id = 3, Name = "Telewizory", DisplayOrder = 3 }
             );
 
             modelBuilder.Entity<ProductModel>().HasData(
-                new ProductModel { Id = 1, Name = "Prod 1",Description="", Price = 1.99, CategoryId = 2, ImageUrl=""},
-                new ProductModel { Id = 2, Name = "Prod 2",Description="", Price = 2.99, CategoryId = 2, ImageUrl=""},
-                new ProductModel { Id = 3, Name = "Prod 3",Description="", Price = 3.99, CategoryId = 1, ImageUrl=""}
+                new ProductModel
+                {
+                    Id = 1,
+                    Name = "Samsung Galaxy S25 Ultra 12/512GB",
+                    Description = "",
+                    Price = 1580.00,
+                    CategoryId = 1,
+                    ImageUrl = "samsungGalaxyS25.jpg"
+                },
+                new ProductModel
+                {
+                    Id = 2,
+                    Name = "Hisense 65U6NQ 65\" MINILED 4K VIDAA Dolby Vision Dolby Atmos",
+                    Description = "",
+                    Price = 739.80,
+                    CategoryId = 3,
+                    ImageUrl = "hisense65U6NQ.jpg"
+                },
+                new ProductModel
+                {
+                    Id = 3,
+                    Name = "Philips 55PML9008 55\" MINILED 4K",
+                    Description = "",
+                    Price = 740.00,
+                    CategoryId = 3,
+                    ImageUrl = "philips55PML9008.jpg"
+                },
+                new ProductModel
+                {
+                    Id = 4,
+                    Name = "Samsung Galaxy Buds3 Pro",
+                    Description = "",
+                    Price = 172.40,
+                    CategoryId = 2,
+                    ImageUrl = "samsungGalaxyBuds3Pro.jpg"
+                },
+                new ProductModel
+                {
+                    Id = 5,
+                    Name = "Xiaomi Redmi Note 14 Pro 8/256GB",
+                    Description = "",
+                    Price = 300.00,
+                    CategoryId = 1,
+                    ImageUrl = "redmiNote14Pro.jpg"
+                },
+                new ProductModel
+                {
+                    Id = 6,
+                    Name = "Logitech G PRO X",
+                    Description = "",
+                    Price = 90.0,
+                    CategoryId = 2,
+                    ImageUrl = "logitechGProX.jpg"
+                }
             );
         }
     }

@@ -23,8 +23,4 @@
     <ProjectReference Include="..\StoreApp.Utility\StoreApp.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\product\" />
-  </ItemGroup>
-
 </Project>
