@@ -342,7 +342,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "",
-                            ImageUrl = "samsungGalaxyS25.jpg",
+                            ImageUrl = "/images/product/samsungGalaxyS25.jpg",
                             Name = "Samsung Galaxy S25 Ultra 12/512GB",
                             Price = 1580.0
                         },
@@ -351,7 +351,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 2,
                             CategoryId = 3,
                             Description = "",
-                            ImageUrl = "hisense65U6NQ.jpg",
+                            ImageUrl = "/images/product/hisense65U6NQ.jpg",
                             Name = "Hisense 65U6NQ 65\" MINILED 4K VIDAA Dolby Vision Dolby Atmos",
                             Price = 739.79999999999995
                         },
@@ -360,7 +360,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 3,
                             CategoryId = 3,
                             Description = "",
-                            ImageUrl = "philips55PML9008.jpg",
+                            ImageUrl = "/images/product/philips55PML9008.jpg",
                             Name = "Philips 55PML9008 55\" MINILED 4K",
                             Price = 740.0
                         },
@@ -369,7 +369,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 4,
                             CategoryId = 2,
                             Description = "",
-                            ImageUrl = "samsungGalaxyBuds3Pro.jpg",
+                            ImageUrl = "/images/product/samsungGalaxyBuds3Pro.jpg",
                             Name = "Samsung Galaxy Buds3 Pro",
                             Price = 172.40000000000001
                         },
@@ -378,7 +378,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 5,
                             CategoryId = 1,
                             Description = "",
-                            ImageUrl = "redmiNote14Pro.jpg",
+                            ImageUrl = "/images/product/redmiNote14Pro.jpg",
                             Name = "Xiaomi Redmi Note 14 Pro 8/256GB",
                             Price = 300.0
                         },
@@ -387,7 +387,7 @@ namespace StoreApp.DataAcces.Migrations
                             Id = 6,
                             CategoryId = 2,
                             Description = "",
-                            ImageUrl = "logitechGProX.jpg",
+                            ImageUrl = "/images/product/logitechGProX.jpg",
                             Name = "Logitech G PRO X",
                             Price = 90.0
                         });

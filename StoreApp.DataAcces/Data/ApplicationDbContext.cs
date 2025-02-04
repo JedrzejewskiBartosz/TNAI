@@ -45,7 +45,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 1580.00,
                     CategoryId = 1,
-                    ImageUrl = "samsungGalaxyS25.jpg"
+                    ImageUrl = "/images/product/samsungGalaxyS25.jpg"
                 },
                 new ProductModel
                 {
@@ -54,7 +54,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 739.80,
                     CategoryId = 3,
-                    ImageUrl = "hisense65U6NQ.jpg"
+                    ImageUrl = "/images/product/hisense65U6NQ.jpg"
                 },
                 new ProductModel
                 {
@@ -63,7 +63,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 740.00,
                     CategoryId = 3,
-                    ImageUrl = "philips55PML9008.jpg"
+                    ImageUrl = "/images/product/philips55PML9008.jpg"
                 },
                 new ProductModel
                 {
@@ -72,7 +72,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 172.40,
                     CategoryId = 2,
-                    ImageUrl = "samsungGalaxyBuds3Pro.jpg"
+                    ImageUrl = "/images/product/samsungGalaxyBuds3Pro.jpg"
                 },
                 new ProductModel
                 {
@@ -81,7 +81,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 300.00,
                     CategoryId = 1,
-                    ImageUrl = "redmiNote14Pro.jpg"
+                    ImageUrl = "/images/product/redmiNote14Pro.jpg"
                 },
                 new ProductModel
                 {
@@ -90,7 +90,7 @@ namespace StoreApp.DataAcces.Data
                     Description = "",
                     Price = 90.0,
                     CategoryId = 2,
-                    ImageUrl = "logitechGProX.jpg"
+                    ImageUrl = "/images/product/logitechGProX.jpg"
                 }
             );
         }
