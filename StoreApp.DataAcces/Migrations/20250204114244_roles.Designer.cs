@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreApp.DataAcces.Data;
 
@@ -11,9 +12,11 @@ using StoreApp.DataAcces.Data;
 namespace StoreApp.DataAcces.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250204114244_roles")]
+    partial class roles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,32 +273,6 @@ namespace StoreApp.DataAcces.Migrations
                         });
                 });
 
-            modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("StoreApp.Models.Models.ProductModel", b =>
                 {
                     b.Property<int>("Id")
@@ -317,22 +294,12 @@ namespace StoreApp.DataAcces.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderModelId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
-
-                    b.Property<int?>("WishListModelId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderModelId");
-
-                    b.HasIndex("WishListModelId");
 
                     b.ToTable("Products");
 
@@ -364,29 +331,6 @@ namespace StoreApp.DataAcces.Migrations
                             Name = "Prod 3",
                             Price = 3.9900000000000002
                         });
-                });
-
-            modelBuilder.Entity("StoreApp.Models.Models.WishListModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
-
-                    b.ToTable("WishList");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.ApplicationUserModel", b =>
@@ -455,17 +399,6 @@ namespace StoreApp.DataAcces.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
-                {
-                    b.HasOne("StoreApp.Models.Models.ApplicationUserModel", "ApplicationUser")
-                        .WithMany("Orders")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-                });
-
             modelBuilder.Entity("StoreApp.Models.Models.ProductModel", b =>
                 {
                     b.HasOne("StoreApp.Models.CategoryModel", "Category")
@@ -474,44 +407,7 @@ namespace StoreApp.DataAcces.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StoreApp.Models.Models.OrderModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderModelId");
-
-                    b.HasOne("StoreApp.Models.Models.WishListModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("WishListModelId");
-
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("StoreApp.Models.Models.WishListModel", b =>
-                {
-                    b.HasOne("StoreApp.Models.Models.ApplicationUserModel", "ApplicationUser")
-                        .WithOne("WishList")
-                        .HasForeignKey("StoreApp.Models.Models.WishListModel", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("StoreApp.Models.Models.WishListModel", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("StoreApp.Models.Models.ApplicationUserModel", b =>
-                {
-                    b.Navigation("Orders");
-
-                    b.Navigation("WishList")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

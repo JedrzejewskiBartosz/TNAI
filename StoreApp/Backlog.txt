@@ -1,0 +1,21 @@
+User:
+	Edytowanie Roli
+	W³aczenie mo¿liwoœci edycji roli w³asnego profilu
+
+NavBar:
+	Zmieniæ wyœwietlanie nazwy
+
+Orders: 
+	Dodaæ mo¿liwoœæ edycji listy
+		Dodaæ mo¿liwoœæ dodawania produktów do zamówienia
+		Dodaæ mo¿liwoœæ usuwania z produktów zamówienia
+	Dodaæ mo¿liwoœæ przegl¹dania histori zamówieñ zamówieñ ?
+
+WishList: 
+	Dodaæ mo¿liwoœæ usuwania produktów z listy
+	Dodaæ mo¿liwoœæ dodawania produktów z listy
+
+Kategorie:
+	Rozwi¹zaæ problem wyœwietlania kategori (Problem z przekazywaniem modelu, DataView?)
+
+

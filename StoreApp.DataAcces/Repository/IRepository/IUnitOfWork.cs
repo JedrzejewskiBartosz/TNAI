@@ -10,6 +10,9 @@ namespace StoreApp.DataAcces.Repository.IRepository
     {
         ICategoryRepository Category { get; }
         IProductRepository Product { get; }
+        IUserRepository User { get; }
+        IOrderRepository Order { get; }
+        IWishListRepository WishList { get; }
         void Save();
     }
 }

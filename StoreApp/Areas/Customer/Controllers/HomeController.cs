@@ -3,6 +3,7 @@ using StoreApp.DataAcces.Repository;
 using StoreApp.DataAcces.Repository.IRepository;
 using StoreApp.Models;
 using StoreApp.Models.Models;
+using StoreApp.Models.ViewModels;
 using System.Diagnostics;
 
 namespace StoreApp.Areas.Customer.Controllers
@@ -20,8 +21,13 @@ namespace StoreApp.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
-            return View(productsList);
+            CategoryViewModel categoryViewModel = new CategoryViewModel()
+            {
+                CategoryList = _unitOfWork.Category.GetAll(),
+                ProductModels = _unitOfWork.Product.GetAll(includeProperties: "Category")
+            };
+            //IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
+            return View(categoryViewModel);
         }
         public IActionResult Details(int id)
         {
@@ -39,5 +45,20 @@ namespace StoreApp.Areas.Customer.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> Category(int categoryId)
+        {
+            var productsList = _unitOfWork.Product.GetAll().Where(x=>x.CategoryId==categoryId);
+            var category = _unitOfWork.Category.Get(x => x.Id == categoryId);
+
+            var categoryViewModel = new CategoryProductViewModel
+            {
+                Category = category,
+                ProductModels = productsList
+            };
+
+            return View(categoryViewModel);
+        }
+        
     }
 }

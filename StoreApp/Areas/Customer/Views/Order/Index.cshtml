@@ -1,14 +1,12 @@
-﻿@model CategoryViewModel
+﻿
+<h1>ORDERS</h1>
 
-@{
-    Layout = "_StoreFrontLayout";
-}
-<div class="">
-    <div class="vstack gap-4">
-        @foreach (var product in Model.ProductModels)
-        {
-            <div class="nav-link text-body hstack gap-3 p-4 bg-light">
-                <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none">
+<div>
+    @*foreach (var x in Model.Products)
+@model OrdersModel
+    {
+        <div class="nav-link text-body hstack gap-3 p-4 bg-light">
+            <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none">
                 <div class="d-flex flex-row justify-content-between w-100">
                     <div class="d-flex flex-row">
                         <div class="w-100 flex">
@@ -34,8 +32,8 @@
                         </div>
                     </div>
                 </div>
-                </a>
-            </div>
-        }
-    </div>
+            </a>
+        </div>
+    }
+    *@
 </div>

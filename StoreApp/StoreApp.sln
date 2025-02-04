@@ -5,11 +5,16 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp", "StoreApp.csproj", "{F613EDEA-6294-4AD4-8487-8D1D1FCD1759}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.DataAcces", "..\StoreApp.DataAcces\StoreApp.DataAcces.csproj", "{77436E16-2624-4862-B9EA-2B2F7223BCE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.DataAcces", "..\StoreApp.DataAcces\StoreApp.DataAcces.csproj", "{77436E16-2624-4862-B9EA-2B2F7223BCE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Utility", "..\StoreApp.Utility\StoreApp.Utility.csproj", "{EB861A8F-28D5-46BB-8490-D7C2694964C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Utility", "..\StoreApp.Utility\StoreApp.Utility.csproj", "{EB861A8F-28D5-46BB-8490-D7C2694964C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreApp.Models", "..\StoreApp.Models\StoreApp.Models.csproj", "{B5D5B9C6-038D-4885-BC0C-390BB64B2C24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreApp.Models", "..\StoreApp.Models\StoreApp.Models.csproj", "{B5D5B9C6-038D-4885-BC0C-390BB64B2C24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementy rozwiązania", "Elementy rozwiązania", "{38AF91EF-48A0-45AE-BCCA-CFB13691FF36}"
+	ProjectSection(SolutionItems) = preProject
+		Backlog.txt = Backlog.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

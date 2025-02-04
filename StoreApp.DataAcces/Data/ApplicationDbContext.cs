@@ -15,9 +15,21 @@ namespace StoreApp.DataAcces.Data
         public DbSet<CategoryModel> Categories { get; set; }
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<ApplicationUserModel> ApplicationUser { get; set; }
+        public DbSet<OrderModel> Order { get; set; }
+        public DbSet<WishListModel> WishList { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUserModel>()
+            .HasMany(u => u.Orders)
+            .WithOne(o => o.ApplicationUser)
+            .HasForeignKey(o => o.ApplicationUserId);
+
+            modelBuilder.Entity<ApplicationUserModel>()
+            .HasOne(u => u.WishList)
+            .WithOne(w => w.ApplicationUser)
+            .HasForeignKey<WishListModel>(w => w.ApplicationUserId);
+
 
             modelBuilder.Entity<CategoryModel>().HasData(
                 new CategoryModel { Id = 1, Name = "Category 1", DisplayOrder = 1 },

@@ -13,11 +13,17 @@ namespace StoreApp.DataAcces.Repository
         private ApplicationDbContext _db;
         public ICategoryRepository Category { get; private set;}
         public IProductRepository Product { get; private set; }
+        public IUserRepository User { get; private set; }
+        public IOrderRepository Order { get; private set; }
+        public IWishListRepository WishList { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Category = new CategoryRepository(_db);
             Product = new ProductRepository(_db);
+            User = new UserRepository(_db);
+            Order = new OrderRepository(_db);
+            WishList = new WishListRepository(_db);
         }
 
     public void Save()

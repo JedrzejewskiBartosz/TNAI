@@ -111,6 +111,9 @@ namespace StoreApp.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
 
+            [Required]
+            public string Name { get; set; }
+
 
         }
 
@@ -118,30 +121,13 @@ namespace StoreApp.Areas.Identity.Pages.Account
         public async Task OnGetAsync(string returnUrl = null)
         {
 
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Customer))
+            if (_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
             {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer));
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_Company)).GetAwaiter().GetResult();
             }
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Employee))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
-            }
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Admin))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
-            }
-            if (!await _roleManager.RoleExistsAsync(SD.Role_Company))
-            {
-                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Company));
-            }
-
-            //if (_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
-            //{
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Company)).GetAwaiter().GetResult();
-            //}
 
             Input = new()
             {
@@ -168,7 +154,11 @@ namespace StoreApp.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.Name = Input.Name;
+                user.Role = Input.Role;
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+
 
                 if (result.Succeeded)
                 {
