@@ -4,22 +4,12 @@
 }
 
 <div class="">
-    <h1>@Model.Category.Name </h1>
+    <h1 class="mb-4">@Model.Category.Name </h1>
+    <div class="row row-cols-3 g-3 ">
     @foreach (var product in @Model.ProductModels)
 
     {
-        <a asp-controller="Home" asp-action="Product" asp-route-id="@product.Id"
-           class="nav-link text-body hstack gap-3 p-4 bg-light">
-            <div class="bg-secondary img-thumbnail" style="height: 5rem; width: 5rem">
-            </div>
-            <div class="rounded-1">
-                <div class="mb-2">
-                    <p class="mb-1">@product.Name</p>
-                    <p class="text-muted mb-0">@product.Category</p>
-                </div>
-                <p class="mb-0">@product.Price zł</p>
-            </div>
-           
-        </a>
+        <partial name="_ProductCard" model="product" />
     }
+    </div>
 </div>

@@ -8,22 +8,8 @@
     @foreach (var product in Model.ProductModels)
     {
         <div class="col">
-            <div class="nav-link text-body hstack gap-3 p-4 bg-body-tertiary h-100 rounded">
-                <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none text-body-secondary d-flex flex-column gap-1">
-                    <div class="w-100 flex mb-2">
-                        <img src="@product.ImageUrl" class="bg-secondary img-thumbnail" />
-                    </div>
-                    <div class="d-flex flex-row justify-content-between">
-                        <span class="mb-1">@product.Name</span>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-baseline">
-                        <span class="text-body">@product.Price.ToString("c")</span>
-                        <div class="btn btn-outline-secondary btn-sm">
-                            <i class="bi bi-cart"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <partial name="_ProductCard" model="product" />
+            
         </div>
     }
 </div>
