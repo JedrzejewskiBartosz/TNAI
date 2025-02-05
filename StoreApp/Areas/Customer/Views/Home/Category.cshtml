@@ -5,11 +5,13 @@
 
 <div class="">
     <h1 class="mb-4">@Model.Category.Name </h1>
-    <div class="row row-cols-3 g-3 ">
+    <div class="row row-cols-3 g-3">
     @foreach (var product in @Model.ProductModels)
 
     {
+            <div class="col">
         <partial name="_ProductCard" model="product" />
+                </div>
     }
     </div>
 </div>

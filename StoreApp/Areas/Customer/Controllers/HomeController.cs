@@ -28,10 +28,12 @@ namespace StoreApp.Areas.Customer.Controllers
             //IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(categoryViewModel);
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int productId)
         {
-            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == id, includeProperties: "Category");
+            
+            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == productId, includeProperties: "Category");
             return View(productsList);
+
         }
 
         public IActionResult Privacy()

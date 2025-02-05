@@ -29,6 +29,7 @@ namespace StoreApp.DataAcces.Repository
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties
@@ -37,7 +38,7 @@ namespace StoreApp.DataAcces.Repository
                     query = query.Include(includeProp);
                 }
             }
-            return query.FirstOrDefault();
+            return query.First(filter);
         }
 
         public IEnumerable<T> GetAll(string? includeProperties = null)
