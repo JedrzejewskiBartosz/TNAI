@@ -1,4 +1,7 @@
-﻿@model CategoryViewModel
+﻿@using StoreApp.Models.ViewModels.IViewModel
+@model IStoreFrontViewModel
+
+
 
 @{
     Layout = "_Layout";
@@ -26,6 +29,7 @@
                         <p class="card-title mb-0 text-decoration-none">@x.Name</p>
                     </div>
                 </a>
+                
             }
         </div>
     </aside>

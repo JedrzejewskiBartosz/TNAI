@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using StoreApp.DataAcces.Repository;
 using StoreApp.DataAcces.Repository.IRepository;
 using StoreApp.Models;
 using StoreApp.Models.Models;
@@ -21,10 +20,10 @@ namespace StoreApp.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-            CategoryViewModel categoryViewModel = new CategoryViewModel()
+            HomeViewModel categoryViewModel = new HomeViewModel()
             {
                 CategoryList = _unitOfWork.Category.GetAll(),
-                ProductModels = _unitOfWork.Product.GetAll(includeProperties: "Category")
+                ProductModels = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList()
             };
             //IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(categoryViewModel);
@@ -49,10 +48,12 @@ namespace StoreApp.Areas.Customer.Controllers
         public async Task<IActionResult> Category(int categoryId)
         {
             var productsList = _unitOfWork.Product.GetAll().Where(x=>x.CategoryId==categoryId);
+
             var category = _unitOfWork.Category.Get(x => x.Id == categoryId);
 
-            var categoryViewModel = new CategoryProductViewModel
+            var categoryViewModel = new CategoryViewModel
             {
+                CategoryList   = _unitOfWork.Category.GetAll(),
                 Category = category,
                 ProductModels = productsList
             };
