@@ -21,3 +21,21 @@ body {
   margin-bottom: 60px;
   background-color: var(--bs-body-bg);
 }
+
+div:where(.swal2-container)
+div:where(.swal2-modal) {
+    background: red;
+}
+
+input.form-control{
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+
+}
+
+input.form-control:focus {
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    color: var(--bs-body-color);
+}

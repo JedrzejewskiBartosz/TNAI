@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoreApp.DataAcces.Data;
 using StoreApp.DataAcces.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
+using StoreApp.Models.Models;
 
 namespace StoreApp.Areas.Admin.Controllers
 {
@@ -96,6 +97,12 @@ namespace StoreApp.Areas.Admin.Controllers
             _unitOfWork.Save();
             TempData["succes"] = "Category removed successfully";
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Getall()
+        {
+            List<CategoryModel> obj = _unitOfWork.Category.GetAll().ToList();
+            return Json(new { data = obj });
         }
     }
 }
