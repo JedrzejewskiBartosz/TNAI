@@ -18,12 +18,19 @@ namespace StoreApp.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchQuery)
         {
+            var products = _unitOfWork.Product.GetAll(includeProperties: "Category");
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                products = products.Where(p => p.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+            }
+
             HomeViewModel categoryViewModel = new HomeViewModel()
             {
                 CategoryList = _unitOfWork.Category.GetAll(),
-                ProductModels = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList()
+                ProductModels = products.ToList()
             };
             //IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(categoryViewModel);

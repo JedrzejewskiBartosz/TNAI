@@ -4,13 +4,22 @@
     Layout = "_StoreFrontLayout";
 }
 
-<div class="row row-cols-3 g-3">
-    @foreach (var product in Model.ProductModels)
-    {
-        <div class="col">
-            <partial name="_ProductCard" model="product" />
-            
-        </div>
-    }
-</div>
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="text" name="searchQuery" class="form-control" placeholder="Wyszukaj po nazwie produktu..." value="@Context.Request.Query["searchQuery"]" />
+    <button type="submit" class="btn btn-primary mt-2">Szukaj</button>
+</form>
+@if (!Model.ProductModels.Any()) {
+    <div class="alert alert-dark mt-3">Nie znaleziono.</div>
+}
+else {
+    <div class="row row-cols-3 g-3">
+        @foreach (var product in Model.ProductModels)
+        {
+            <div class="col">
+                <partial name="_ProductCard" model="product" />
+
+            </div>
+        }
+    </div>
+}
 
