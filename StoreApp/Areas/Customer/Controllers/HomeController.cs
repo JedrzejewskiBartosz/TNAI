@@ -54,9 +54,14 @@ namespace StoreApp.Areas.Customer.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Category(int categoryId)
+        public async Task<IActionResult> Category(int categoryId, string searchQuery)
         {
-            var productsList = _unitOfWork.Product.GetAll().Where(x=>x.CategoryId==categoryId);
+            var products = _unitOfWork.Product.GetAll().Where(x => x.CategoryId == categoryId);
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                products = products.Where(p => p.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+            }
 
             var category = _unitOfWork.Category.Get(x => x.Id == categoryId);
 
@@ -64,7 +69,7 @@ namespace StoreApp.Areas.Customer.Controllers
             {
                 CategoryList   = _unitOfWork.Category.GetAll(),
                 Category = category,
-                ProductModels = productsList
+                ProductModels = products.ToList(),
             };
 
             return View(categoryViewModel);
