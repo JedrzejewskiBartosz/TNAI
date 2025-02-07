@@ -17,6 +17,7 @@ namespace StoreApp.DataAcces.Data
         public DbSet<ApplicationUserModel> ApplicationUser { get; set; }
         public DbSet<OrderModel> Order { get; set; }
         public DbSet<WishListModel> WishList { get; set; }
+        public DbSet<ShoppingCartModel> ShoppingCart { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

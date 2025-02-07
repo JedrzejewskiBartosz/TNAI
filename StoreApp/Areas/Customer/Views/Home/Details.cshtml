@@ -25,21 +25,16 @@
                 </div>
                     @if(Model.Description != null)
                     {
-                    <p class="text-body-secondary">
-                        @Model.Description.ToString()
-                    </p>
-
+                        <p class="text-body-secondary">
+                            @Html.Raw(Model.Description)
+                        </p>
                     }
                     else
                     {
-                    <p class="text-body-secondary">
-
-                        Telewizor Philips 55PML9008 to nie tylko urządzenie do oglądania telewizji, 
-                        ale prawdziwe dzieło sztuki w Twoim domu.Dzięki technologii Ambilight podświetlenie obrazu 
-                        rozprzestrzenia się poza ekran.Tworzy to niepowtarzalny nastrój
-                    </p>
-
-                }
+                        <p class="text-body-tertiary">
+                           *Brak opisu*
+                        </p>
+                    }
                 <button class="btn btn-primary">
                     Add to card
                 </button>
