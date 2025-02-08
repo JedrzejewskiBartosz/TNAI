@@ -12,7 +12,7 @@ namespace StoreApp.Models.Models
     {
         [Key]
         public int Id { get; set; }
-        public List<ProductModel> Products { get; set; }
+        public List<int> ProductsID { get; set; } = new();
         [Required] public string ShoppingCartId { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StoreApp.Models;
 using StoreApp.Models.Models;
+using System.Text.Json;
 
 namespace StoreApp.DataAcces.Data
 {
@@ -30,6 +31,13 @@ namespace StoreApp.DataAcces.Data
             .HasOne(u => u.WishList)
             .WithOne(w => w.ApplicationUser)
             .HasForeignKey<WishListModel>(w => w.ApplicationUserId);
+
+            modelBuilder.Entity<ShoppingCartModel>()
+               .Property(p => p.ProductsID)
+               .HasConversion(
+                   v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
+                   v => JsonSerializer.Deserialize<List<int>>(v, new JsonSerializerOptions())
+               );
 
 
             modelBuilder.Entity<CategoryModel>().HasData(

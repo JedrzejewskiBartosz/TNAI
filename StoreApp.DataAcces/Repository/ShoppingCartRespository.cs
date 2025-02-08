@@ -24,12 +24,13 @@ namespace StoreApp.DataAcces.Repository
 
             var newCart = new ShoppingCartModel() { 
                 Id = 0,
-                Products = [],
+                ProductsID = [],
                 ShoppingCartId = cartID
             };
             _db.ShoppingCart.Add(newCart);
             return cartID;
         }
+
 
         public void AddProductToCart(string cartID, int productId)
         {
@@ -43,7 +44,8 @@ namespace StoreApp.DataAcces.Repository
             {
                 return;
             }
-            cart.Products.Add(product);
+            cart.ProductsID.Add(productId);
+            _db.ShoppingCart.Update(cart);
             return;
         }
 
@@ -54,12 +56,12 @@ namespace StoreApp.DataAcces.Repository
             {
                 return;
             }
-            var newProducts = cart.Products.Where(product => product.Id != productId).ToList();
+            var newProducts = cart.ProductsID.Where(product => product != productId).ToList();
             if(newProducts == null)
             {
                 return;
             }
-            cart.Products = newProducts;
+            cart.ProductsID = newProducts;
             _db.ShoppingCart.Update(cart);
         }
 

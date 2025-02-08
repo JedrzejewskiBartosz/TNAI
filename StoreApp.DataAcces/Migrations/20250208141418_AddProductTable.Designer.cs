@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreApp.DataAcces.Data;
 
@@ -11,9 +12,11 @@ using StoreApp.DataAcces.Data;
 namespace StoreApp.DataAcces.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250208141418_AddProductTable")]
+    partial class AddProductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -323,6 +326,9 @@ namespace StoreApp.DataAcces.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
+                    b.Property<int?>("ShoppingCartModelId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("WishListModelId")
                         .HasColumnType("int");
 
@@ -331,6 +337,8 @@ namespace StoreApp.DataAcces.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("OrderModelId");
+
+                    b.HasIndex("ShoppingCartModelId");
 
                     b.HasIndex("WishListModelId");
 
@@ -400,10 +408,6 @@ namespace StoreApp.DataAcces.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ProductsID")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShoppingCartId")
                         .IsRequired()
@@ -526,6 +530,10 @@ namespace StoreApp.DataAcces.Migrations
                         .WithMany("Products")
                         .HasForeignKey("OrderModelId");
 
+                    b.HasOne("StoreApp.Models.Models.ShoppingCartModel", null)
+                        .WithMany("Products")
+                        .HasForeignKey("ShoppingCartModelId");
+
                     b.HasOne("StoreApp.Models.Models.WishListModel", null)
                         .WithMany("Products")
                         .HasForeignKey("WishListModelId");
@@ -545,6 +553,11 @@ namespace StoreApp.DataAcces.Migrations
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("StoreApp.Models.Models.ShoppingCartModel", b =>
                 {
                     b.Navigation("Products");
                 });

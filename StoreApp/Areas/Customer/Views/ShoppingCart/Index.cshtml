@@ -1,0 +1,58 @@
+﻿@model ShoppingCartViewModel
+
+<h1>Koszyk</h1>
+
+<div>
+
+    @foreach(var product in Model.Products)
+    {
+
+        <div class="w-100 flex mb-2">
+            <img src="@product.ImageUrl" class="bg-secondary img-thumbnail" />
+        </div>
+        <div class="d-flex flex-row justify-content-between">
+            <span class="mb-1">@product.Name</span>
+        </div>
+        <div class="d-flex flex-row justify-content-between align-items-baseline">
+            <span class="text-body">@product.Price.ToString("c")</span>
+            <div class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-cart"></i>
+            </div>
+        </div>
+    }
+
+    @*foreach (var x in Model.Products)
+    @model OrdersModel
+    {
+    <div class="nav-link text-body hstack gap-3 p-4 bg-light">
+    <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none">
+    <div class="d-flex flex-row justify-content-between w-100">
+    <div class="d-flex flex-row">
+    <div class="w-100 flex">
+    <img src="@product.ImageUrl" class="bg-secondary img-thumbnail" style="height: 5rem; width: 5rem" />
+    </div>
+    <div class="mb-2 d-flex flex-column ms-3">
+    <p class="mb-1">@product.Name</p>
+    <p class="text-muted mb-0">@product.Category.Name</p>
+    </div>
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+    <p class="text-opacity-75 text-center mb-2">
+    <span>
+    @product.Price.ToString("c")
+    </span>
+    </p>
+    <div>
+    <a asp-action="Details"
+    asp-route-productId="@product.Id"
+    class="btn btn-primary bg-gradient border-0 form-control">
+    Details
+    </a>
+    </div>
+    </div>
+    </div>
+    </a>
+    </div>
+    }
+    *@
+</div>
