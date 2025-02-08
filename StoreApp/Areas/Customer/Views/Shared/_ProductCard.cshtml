@@ -1,9 +1,9 @@
 ﻿@model StoreApp.Models.Models.ProductModel
 
 <div class="nav-link text-body hstack gap-3 p-4 bg-body-tertiary h-100 rounded">
-    <div class="text-decoration-none text-body-secondary d-flex flex-column gap-1">
-        <div class="w-100 flex mb-2">
-            <img src="@Model.ImageUrl" class="bg-secondary img-thumbnail" />
+    <div class="text-decoration-none text-body-secondary d-flex flex-column gap-1 w-100">
+        <div class="w-100 flex mb-2 ratio ratio-1x1">
+            <img src="@Model.ImageUrl" class="bg-secondary object-fit-contain w-auto img-thumbnail" />
         </div>
         <div class="d-flex flex-row justify-content-between">
             <span class="mb-1">@Model.Name</span>
@@ -13,9 +13,9 @@
             
            
         </div>
-        <div class="d-flex flex-row justify-content-between align-items-baseline">
-            <a asp-action="Details" asp-route-productId="@Model.Id" class="text-decoration-none text-body-secondary d-flex flex-column gap-1">
-               Zobacz Więcej
+        <div class="d-flex flex-row justify-content-between align-items-center">
+            <a asp-action="Details" asp-route-productId="@Model.Id" class="text-body-secondary d-flex flex-column gap-1">
+               Zobacz Więcej >
              </a>
             <form asp-controller="ShoppingCart" asp-action="AddItem" asp-route-productId="@Model.Id">
                 <input type="hidden" name="categoryID" value="@Model.Category.Id" />
