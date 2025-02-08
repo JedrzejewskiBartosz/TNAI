@@ -10,5 +10,12 @@ namespace StoreApp.Models.ViewModels
     public class ShoppingCartViewModel
     {
         public IEnumerable<ProductModel> Products { get; set; }
+
+        public double GetCombinedCost()
+        {
+            return Products.Sum(x => x.Price);
+        }
     }
+
+    
 }
