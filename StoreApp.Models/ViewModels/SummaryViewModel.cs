@@ -10,7 +10,7 @@ namespace StoreApp.Models.ViewModels
     public class OrderViewModel
     {
         public OrderDetailsModel OrderDetails { get; set; }
-        public IEnumerable<ProductModel> Products { get; set; }
+        public IEnumerable<OrderProductModel> Products { get; set; }
 
     }
 }

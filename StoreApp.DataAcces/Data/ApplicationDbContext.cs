@@ -40,6 +40,18 @@ namespace StoreApp.DataAcces.Data
                    v => JsonSerializer.Deserialize<List<int>>(v, new JsonSerializerOptions())
                );
 
+            modelBuilder.Entity<OrderProductModel>()
+                .HasKey(op => new { op.OrderId, op.ProductId });
+
+            modelBuilder.Entity<OrderProductModel>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.Products)
+                .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProductModel>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(op => op.ProductId);
 
             modelBuilder.Entity<CategoryModel>().HasData(
                 new CategoryModel { Id = 1, Name = "Telefony", DisplayOrder = 1 },

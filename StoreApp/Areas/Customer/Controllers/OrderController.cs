@@ -2,6 +2,7 @@
 using StoreApp.DataAcces.Migrations;
 using StoreApp.DataAcces.Repository.IRepository;
 using StoreApp.Models.ViewModels;
+using System.Security.Claims;
 
 namespace StoreApp.Areas.Customer.Controllers
 {
@@ -17,11 +18,12 @@ namespace StoreApp.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            var order = _unitOfWork.Order.GetAll("OrderDetails,Products").ToList();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var orders = _unitOfWork.Order.GetAllUserOrders(userId);
 
             var viewModel = new OrdersViewModel()
             {
-                PlacedOrders = order,
+                PlacedOrders = orders,
             };
 
             return View(viewModel);

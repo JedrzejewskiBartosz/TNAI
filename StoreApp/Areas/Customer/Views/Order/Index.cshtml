@@ -40,14 +40,14 @@
                         <div class="row align-items-center">
                             <div class="col-5 d-flex align-items-center gap-3">
                                 <div class="flex  ratio ratio-1x1" style="width:10%">
-                                    <img src="@product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
+                                    <img src="@product.Product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
                                 </div>
                                 <span>
-                                    @product.Name
+                                    @product.Product.Name
                                 </span>
                             </div>
                             <div class="col-3">
-                                @product.Price.ToString("c")
+                                @product.Product.Price.ToString("c")
                             </div>
                             <div class="col-4 text-end">
                                 <a>

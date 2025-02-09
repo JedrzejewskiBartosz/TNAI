@@ -13,16 +13,18 @@ namespace StoreApp.Models.Models
     {
         [Key]
         public int Id { get; set; }
-        public List<ProductModel> Products { get; set; }
+        //public List<ProductModel> Products { get; set; }
+
+        public List<OrderProductModel> Products { get; set; }
+
         public double TotalPrice { get; set; } = 0;
+        public string State { get; set; } = "Pending";
 
         public DateTime DatePlaced;
 
         public int OrderDetailsId { get; set; }
         [ForeignKey("OrderDetailsId")]
         public OrderDetailsModel OrderDetails { get; set; }
-
-        public string State { get; set; } = "Pending";
 
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
@@ -32,7 +34,7 @@ namespace StoreApp.Models.Models
         {
             OrderDetails = details;
             Id = 0;
-            Products = products;
+            Products = products.ConvertAll(it => new OrderProductModel { ProductId = it.Id,Quantity=1});
             State = "Pending";
             TotalPrice = products.Sum(it => it.Price);
             ApplicationUserId = userID;
@@ -40,7 +42,7 @@ namespace StoreApp.Models.Models
 
         public OrderModel()
         {
-            Products = new List<ProductModel>();
+            Products = new List<OrderProductModel>();
             State = "Pending";
         }
     }

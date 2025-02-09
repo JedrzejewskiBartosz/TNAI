@@ -44,7 +44,8 @@ namespace StoreApp.Areas.Customer.Controllers
 
         public ActionResult Summary(int orderId)
         {
-            var order = _unitOfWork.Order.Get(it => it.Id == orderId, "OrderDetails,Products");
+            //var order = _unitOfWork.Order.Get(it => it.Id == orderId, "OrderDetails,Products");
+            var order = _unitOfWork.Order.GetFullOrder(orderId);
 
             var viewModel = new OrderViewModel
             {
