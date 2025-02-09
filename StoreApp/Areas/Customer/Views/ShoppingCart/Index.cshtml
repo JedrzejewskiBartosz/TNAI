@@ -28,7 +28,7 @@
             </div>
         }
     </div>
-    <div class="col-5">
+    <div class="col-4">
        
     <div class="card" >
           <div class="card-body gap-4">
@@ -38,9 +38,9 @@
                 <span>@Model.GetCombinedCost().ToString("c")</span>
             </div>
           </div>
-              <button class="btn btn-primary m-2">
+              <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary m-2">
              Przejdz do płatności
-            </button>
+            </a>
          </div>
      
     </div>

@@ -1,0 +1,18 @@
+﻿@model SummaryViewModel
+
+<div>
+	Order Placed
+
+	@foreach(var item in Model.Products)
+	{
+		<div>
+			@item.Name
+		</div>
+	}
+
+	@Model.OrderDetails.City
+	@Model.OrderDetails.Address
+	@Model.OrderDetails.CardNumber
+	@Model.OrderDetails.ShippingProvider
+	@Model.OrderDetails.Email
+</div>

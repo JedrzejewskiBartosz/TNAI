@@ -41,13 +41,6 @@ namespace StoreApp.Areas.Customer.Controllers
             return View(model);
         }
 
-        //// GET: Cart/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-
         // POST: Cart/AddItem/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -73,26 +66,5 @@ namespace StoreApp.Areas.Customer.Controllers
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }
-
-        //// GET: Cart/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Cart/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

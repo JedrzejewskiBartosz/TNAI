@@ -65,9 +65,22 @@ namespace StoreApp.DataAcces.Repository
             _db.ShoppingCart.Update(cart);
         }
 
+
+
         public void Update(ShoppingCartModel ShoppingCart)
         {
             throw new NotImplementedException();
+        }
+
+        public List<ProductModel> GetCartProducts(string cartID)
+        {
+            var shoppingCart = _db.ShoppingCart.FirstOrDefault(it => it.ShoppingCartId == cartID);
+
+            if(shoppingCart == null)
+            {
+                return new List<ProductModel>();
+            }
+            return _db.Products.Where(x => shoppingCart.ProductsID.Contains(x.Id)).ToList();
         }
     }
 }
