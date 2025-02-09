@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreApp.DataAcces.Repository.IRepository;
+using StoreApp.Models.Models;
 using StoreApp.Models.ViewModels;
 
 namespace StoreApp.Areas.Customer.Controllers
@@ -50,7 +51,8 @@ namespace StoreApp.Areas.Customer.Controllers
 
             if (cartID == null)
             {
-                cartID = _unitOfWork.ShoppingCart.CreateNewCart();
+                var newCart = new ShoppingCartModel();
+                //cartID = _unitOfWork.ShoppingCart.CreateNewCart();
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = true, // Prevent JavaScript access
@@ -59,10 +61,14 @@ namespace StoreApp.Areas.Customer.Controllers
                 };
 
                 // Store cart ID in a cookie
-                Response.Cookies.Append("cartID", cartID, cookieOptions);
+                Response.Cookies.Append("cartID", newCart.ShoppingCartId, cookieOptions);
+                newCart.ProductsID.Add(productId);
+                _unitOfWork.ShoppingCart.Add(newCart);
             }
-
-            _unitOfWork.ShoppingCart.AddProductToCart(cartID, productId);
+            else
+            {
+                _unitOfWork.ShoppingCart.AddProductToCart(cartID, productId);
+            }
             _unitOfWork.Save();
             return RedirectToAction(nameof(Index));
         }

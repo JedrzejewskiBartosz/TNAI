@@ -47,10 +47,11 @@ namespace StoreApp.Areas.Customer.Controllers
             //var order = _unitOfWork.Order.Get(it => it.Id == orderId, "OrderDetails,Products");
             var order = _unitOfWork.Order.GetFullOrder(orderId);
 
-            var viewModel = new OrderViewModel
+            var viewModel = new OrderSummaryViewModel
             {
                 Products = order.Products,
                 OrderDetails = order.OrderDetails,
+                DatePlaced= order.DatePlaced,
             };
 
             return View(viewModel);

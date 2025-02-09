@@ -13,8 +13,6 @@ namespace StoreApp.DataAcces.Repository.IRepository
 
         void AddProductToCart(string cartID, int productId);
         void RemoveProductFromCart(string cartID, int productId);
-        string CreateNewCart();
-
         public List<ProductModel> GetCartProducts(string cartID);
     }
 }

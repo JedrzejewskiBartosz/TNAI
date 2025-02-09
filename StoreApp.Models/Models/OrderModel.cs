@@ -38,6 +38,7 @@ namespace StoreApp.Models.Models
             State = "Pending";
             TotalPrice = products.Sum(it => it.Price);
             ApplicationUserId = userID;
+            DatePlaced = DateTime.Now;
         }
 
         public OrderModel()

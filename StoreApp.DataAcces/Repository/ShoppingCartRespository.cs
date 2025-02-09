@@ -18,20 +18,6 @@ namespace StoreApp.DataAcces.Repository
             _db = db;
         }
 
-        public string CreateNewCart()
-        {
-            var cartID = Guid.NewGuid().ToString();
-
-            var newCart = new ShoppingCartModel() { 
-                Id = 0,
-                ProductsID = [],
-                ShoppingCartId = cartID
-            };
-            _db.ShoppingCart.Add(newCart);
-            return cartID;
-        }
-
-
         public void AddProductToCart(string cartID, int productId)
         {
             var cart = _db.ShoppingCart.FirstOrDefault(cart => cart.ShoppingCartId == cartID);
