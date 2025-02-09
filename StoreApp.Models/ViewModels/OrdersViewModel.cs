@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace StoreApp.Models.ViewModels
 {
-    public class OrderViewModel
+    public class OrdersViewModel
     {
-        public OrderDetailsModel OrderDetails { get; set; }
-        public IEnumerable<ProductModel> Products { get; set; }
-
+        public List<OrderModel> PlacedOrders { get; set; }
     }
 }

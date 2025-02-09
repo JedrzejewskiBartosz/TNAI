@@ -46,7 +46,7 @@ namespace StoreApp.Areas.Customer.Controllers
         {
             var order = _unitOfWork.Order.Get(it => it.Id == orderId, "OrderDetails,Products");
 
-            var viewModel = new SummaryViewModel
+            var viewModel = new OrderViewModel
             {
                 Products = order.Products,
                 OrderDetails = order.OrderDetails,
@@ -85,64 +85,6 @@ namespace StoreApp.Areas.Customer.Controllers
             catch
             {
                 return View(nameof(Index));
-            }
-        }
-
-
-        // POST: CheckoutController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CheckoutController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CheckoutController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CheckoutController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CheckoutController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
             }
         }
     }

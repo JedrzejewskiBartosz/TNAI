@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreApp.DataAcces.Migrations;
 using StoreApp.DataAcces.Repository.IRepository;
+using StoreApp.Models.ViewModels;
 
 namespace StoreApp.Areas.Customer.Controllers
 {
@@ -15,7 +17,14 @@ namespace StoreApp.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var order = _unitOfWork.Order.GetAll("OrderDetails,Products").ToList();
+
+            var viewModel = new OrdersViewModel()
+            {
+                PlacedOrders = order,
+            };
+
+            return View(viewModel);
         }
     }
 }

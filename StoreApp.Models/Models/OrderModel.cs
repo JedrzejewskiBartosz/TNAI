@@ -16,6 +16,8 @@ namespace StoreApp.Models.Models
         public List<ProductModel> Products { get; set; }
         public double TotalPrice { get; set; } = 0;
 
+        public DateTime DatePlaced;
+
         public int OrderDetailsId { get; set; }
         [ForeignKey("OrderDetailsId")]
         public OrderDetailsModel OrderDetails { get; set; }

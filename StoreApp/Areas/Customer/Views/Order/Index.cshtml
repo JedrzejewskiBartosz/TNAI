@@ -1,7 +1,66 @@
-﻿
-<h1>ORDERS</h1>
+﻿@model OrdersViewModel
 
-<div>
+
+
+<div class="container">
+    <h1 class="my-4">Historia Zamówień</h1>
+
+    <div class="d-flex flex-column gap-5">
+        @foreach(var order in Model.PlacedOrders)
+        {
+            <div>
+                <div class="bg-body-secondary p-3 rounded mb-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <p class="mb-1">Data zamówienia</p>
+                            <p class="mb-0 text-muted">23.03.24</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="mb-1">Numer Zamówienia</p>
+                            <p class="mb-0 text-muted">@order.Id</p>
+                        </div>
+                        <div class="col-3">
+                            <p class="mb-1">Łączny koszt</p>
+                            <p class="mb-0 text-muted">@order.TotalPrice.ToString("c")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="py-2 border-bottom">
+                    <div class="row">
+                        <div class="col-5">Produkt</div>
+                        <div class="col-3">Cena</div>
+                        <div class="col-4 text-end">Info</div>
+                    </div>
+                </div>
+
+                @foreach(var product in @order.Products)
+                {
+                    <div class="py-2 border-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-5 d-flex align-items-center gap-3">
+                                <div class="flex  ratio ratio-1x1" style="width:10%">
+                                    <img src="@product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
+                                </div>
+                                <span>
+                                    @product.Name
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                @product.Price.ToString("c")
+                            </div>
+                            <div class="col-4 text-end">
+                                <a>
+                                    Zobacz produkt
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
     @*foreach (var x in Model.Products)
 @model OrdersModel
     {
