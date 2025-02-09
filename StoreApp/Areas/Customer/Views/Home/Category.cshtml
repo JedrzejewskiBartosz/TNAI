@@ -3,7 +3,8 @@
     Layout = "_StoreFrontLayout";
 }
 
-<form asp-action="Index" method="get" class="hstack gap-2 align-items-center mb-4">
+<form asp-action="Category" method="get" class="hstack gap-2 align-items-center mb-4">
+    <input type="hidden" name="categoryID" value="@Model.Category.Id" />
     <input type="text" name="searchQuery" class="form-control" placeholder="Wyszukaj po nazwie produktu..." value="@Context.Request.Query["searchQuery"]" />
     <button type="submit" class="btn btn-secondary flex-shrink-0"><i class="bi bi-search mr-2"></i> Szukaj</button>
 </form>
