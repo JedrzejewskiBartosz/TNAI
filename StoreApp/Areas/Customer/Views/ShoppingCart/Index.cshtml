@@ -38,10 +38,18 @@
                 <span>@Model.GetCombinedCost().ToString("c")</span>
             </div>
           </div>
-              <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary m-2">
-             Przejdz do płatności
-            </a>
-         </div>
-     
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary m-2">
+                    Przejdz do płatności
+                </a>
+            }
+
+            @if(!User.Identity.IsAuthenticated)
+            {
+                <button class="btn btn-secondary m-2" disabled>
+                    Zaloguj / Zarejestruj się
+                </button>
+            }
     </div>
  </div>
