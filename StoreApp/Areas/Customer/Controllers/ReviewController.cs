@@ -31,6 +31,7 @@ namespace StoreApp.Areas.Customer.Controllers
                 review.ApplicationUserId = user.Id;
 
                 _unitOfWork.Review.Add(review);
+                _unitOfWork.Save();
 
                 return RedirectToAction("Details", new { id = review.ProductId });
             }
