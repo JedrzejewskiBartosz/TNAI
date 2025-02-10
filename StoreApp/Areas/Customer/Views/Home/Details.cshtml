@@ -37,7 +37,7 @@
             <h3>Reviews</h3>
             @if (User.Identity.IsAuthenticated)
             {
-                <partial name="_WriteReview" model="new ReviewModel(Model.Id)" />
+                <partial name="_WriteReview" model="new ReviewModel {ProductId = Model.Id}" />
             }
             else
             {
