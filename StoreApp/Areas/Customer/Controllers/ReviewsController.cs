@@ -34,6 +34,9 @@ namespace StoreApp.Areas.Customer.Controllers
             _unitOfWork.Review.Add(reviewModel);
             _unitOfWork.Save();
 
+            // Log the productId to confirm it's correct
+            _logger.LogInformation($"Review created for ProductId: {reviewModel.ProductId}");
+
             return RedirectToAction("Details", "Home", new { productId = reviewModel.ProductId });
         }
     }
