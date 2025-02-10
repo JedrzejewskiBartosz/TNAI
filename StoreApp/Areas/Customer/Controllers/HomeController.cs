@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using StoreApp.DataAcces.Repository;
 using StoreApp.DataAcces.Repository.IRepository;
 using StoreApp.Models;
 using StoreApp.Models.Models;
@@ -19,20 +18,29 @@ namespace StoreApp.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchQuery)
         {
-            CategoryViewModel categoryViewModel = new CategoryViewModel()
+            var products = _unitOfWork.Product.GetAll(includeProperties: "Category");
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                products = products.Where(p => p.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+            }
+
+            HomeViewModel categoryViewModel = new HomeViewModel()
             {
                 CategoryList = _unitOfWork.Category.GetAll(),
-                ProductModels = _unitOfWork.Product.GetAll(includeProperties: "Category")
+                ProductModels = products.ToList()
             };
             //IEnumerable<ProductModel>  productsList = _unitOfWork.Product.GetAll(includeProperties: "Category");
             return View(categoryViewModel);
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int productId)
         {
-            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == id, includeProperties: "Category");
+            
+            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == productId, includeProperties: "Category");
             return View(productsList);
+
         }
 
         public IActionResult Privacy()
@@ -46,15 +54,22 @@ namespace StoreApp.Areas.Customer.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public async Task<IActionResult> Category(int categoryId)
+        public async Task<IActionResult> Category(int categoryId, string searchQuery)
         {
-            var productsList = _unitOfWork.Product.GetAll().Where(x=>x.CategoryId==categoryId);
+            var products = _unitOfWork.Product.GetAll().Where(x => x.CategoryId == categoryId);
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                products = products.Where(p => p.Name.Contains(searchQuery, StringComparison.OrdinalIgnoreCase));
+            }
+
             var category = _unitOfWork.Category.Get(x => x.Id == categoryId);
 
-            var categoryViewModel = new CategoryProductViewModel
+            var categoryViewModel = new CategoryViewModel
             {
+                CategoryList   = _unitOfWork.Category.GetAll(),
                 Category = category,
-                ProductModels = productsList
+                ProductModels = products.ToList(),
             };
 
             return View(categoryViewModel);

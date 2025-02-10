@@ -1,0 +1,60 @@
+﻿@model OrderSummaryViewModel
+
+<div class="container">
+	<h1 class="my-5">Order Placed</h1>
+    <div>
+        <div class="bg-body-secondary p-3 rounded mb-2">
+            <div class="row">
+                @*
+
+                <div class="col-3">
+                    <p class="mb-1">Data zamówienia</p>
+                    <p class="mb-0 text-muted">@Model.DatePlaced.ToLongDateString()</p>
+                </div>
+                *@
+
+                <div class="col-3">
+                    <p class="mb-1">Numer Zamówienia</p>
+                    <p class="mb-0 text-muted">@Model.OrderDetails.Id</p>
+                </div>
+                <div class="col-3">
+                    <p class="mb-1">Łączny koszt</p>
+                    <p class="mb-0 text-muted">@Model.GetCombinedCost().ToString("c")</p>
+                </div>
+            </div>
+        </div>
+   
+        <div class="py-2 border-bottom">
+            <div class="row">
+                <div class="col-5">Produkt</div>
+                <div class="col-3">Cena</div>
+                <div class="col-4 text-end">Info</div>
+            </div>
+        </div>
+
+        @foreach (var product in Model.Products)
+        {
+            <div class="py-2 border-bottom">
+                <div class="row align-items-center">
+                    <div class="col-5 d-flex align-items-center gap-3">
+                        <div class="flex  ratio ratio-1x1" style="width:10%">
+                            <img src="@product.Product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
+                        </div>
+                        <span>
+                            @product.Product.Name
+                        </span>
+                    </div>
+                    <div class="col-3">
+                        @product.Product.Price.ToString("c")
+                    </div>
+                    <div class="col-4 text-end">
+                        <a asp-controller="Home" asp-action="Details" asp-route-productId="@product.ProductId" class="text-body-secondary d-flex flex-column gap-1">
+                            Zobacz produkt
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+	 
+</div>

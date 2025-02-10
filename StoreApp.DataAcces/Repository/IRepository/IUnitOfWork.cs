@@ -13,6 +13,7 @@ namespace StoreApp.DataAcces.Repository.IRepository
         IUserRepository User { get; }
         IOrderRepository Order { get; }
         IWishListRepository WishList { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         void Save();
     }
 }

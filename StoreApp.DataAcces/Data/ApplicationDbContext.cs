@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StoreApp.Models;
 using StoreApp.Models.Models;
+using System.Text.Json;
 
 namespace StoreApp.DataAcces.Data
 {
@@ -16,7 +17,9 @@ namespace StoreApp.DataAcces.Data
         public DbSet<ProductModel> Products { get; set; }
         public DbSet<ApplicationUserModel> ApplicationUser { get; set; }
         public DbSet<OrderModel> Order { get; set; }
+        public DbSet<OrderDetailsModel> OrderDetails { get; set; }
         public DbSet<WishListModel> WishList { get; set; }
+        public DbSet<ShoppingCartModel> ShoppingCart { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,6 +33,29 @@ namespace StoreApp.DataAcces.Data
             .WithOne(w => w.ApplicationUser)
             .HasForeignKey<WishListModel>(w => w.ApplicationUserId);
 
+            modelBuilder.Entity<ShoppingCartModel>()
+               .Property(p => p.ProductsID)
+               .HasConversion(
+                   v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
+                   v => JsonSerializer.Deserialize<List<int>>(v, new JsonSerializerOptions())
+               );
+
+            modelBuilder.Entity<CategoryModel>().HasData(
+                new CategoryModel { Id = 999, Name = "Default", DisplayOrder = 0 }
+            );
+
+            modelBuilder.Entity<OrderProductModel>()
+                .HasKey(op => new { op.OrderId, op.ProductId });
+
+            modelBuilder.Entity<OrderProductModel>()
+                .HasOne(op => op.Order)
+                .WithMany(o => o.Products)
+                .HasForeignKey(op => op.OrderId);
+
+            modelBuilder.Entity<OrderProductModel>()
+                .HasOne(op => op.Product)
+                .WithMany(p => p.OrderProducts)
+                .HasForeignKey(op => op.ProductId);
 
             modelBuilder.Entity<CategoryModel>().HasData(
                 new CategoryModel { Id = 1, Name = "Telefony", DisplayOrder = 1 },

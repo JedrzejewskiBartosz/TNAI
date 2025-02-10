@@ -11,5 +11,9 @@ namespace StoreApp.DataAcces.Repository.IRepository
     public interface IWishListRepository : IRepository<WishListModel>
     {
         void Update(WishListModel WishList);
+        void AddProductToWishList(string wishListId, int productId);
+        void RemoveProductFromWishList(string wishListId, int productId);
+        List<ProductModel> GetWishListProducts(string wishListId);
+
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StoreApp.DataAcces.Migrations;
 using StoreApp.DataAcces.Repository.IRepository;
+using StoreApp.Models.ViewModels;
+using System.Security.Claims;
 
 namespace StoreApp.Areas.Customer.Controllers
 {
@@ -15,7 +18,15 @@ namespace StoreApp.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var orders = _unitOfWork.Order.GetAllUserOrders(userId);
+
+            var viewModel = new OrdersViewModel()
+            {
+                PlacedOrders = orders,
+            };
+
+            return View(viewModel);
         }
     }
 }

@@ -33,5 +33,9 @@ namespace StoreApp.DataAcces.Repository
                 }
             }
         }
+        public List<ProductModel> ListProducts(List<int> productsId)
+        {
+            return _db.Products.Where(x => productsId.Contains(x.Id)).ToList();
+        }
     }
 }

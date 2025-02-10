@@ -28,5 +28,24 @@ namespace StoreApp.Models.Models
         [ValidateNever]
         public CategoryModel? Category { get; set; }
         public string? ImageUrl { get; set; }
+
+        [ValidateNever]
+        public List<OrderProductModel> OrderProducts { get; set; }
+
+        public ProductModel()
+        {
+
+        }
+
+        public ProductModel(OrderProductModel orderProduct)
+        {
+            Id = orderProduct.ProductId;
+            Name = orderProduct.Product.Name;
+            Description = orderProduct.Product.Description;
+            Price = orderProduct.Product.Price;
+            CategoryId = orderProduct.Product.CategoryId;
+            ImageUrl = orderProduct.Product.ImageUrl;
+        }
+
     }
 }

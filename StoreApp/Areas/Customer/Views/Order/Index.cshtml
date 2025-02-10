@@ -1,39 +1,66 @@
-﻿
-<h1>ORDERS</h1>
+﻿@model OrdersViewModel
 
-<div>
-    @*foreach (var x in Model.Products)
-@model OrdersModel
-    {
-        <div class="nav-link text-body hstack gap-3 p-4 bg-light">
-            <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none">
-                <div class="d-flex flex-row justify-content-between w-100">
-                    <div class="d-flex flex-row">
-                        <div class="w-100 flex">
-                            <img src="@product.ImageUrl" class="bg-secondary img-thumbnail" style="height: 5rem; width: 5rem" />
+
+
+<div class="container">
+    <h1 class="my-4">Historia Zamówień</h1>
+
+    <div class="d-flex flex-column gap-5">
+        @foreach(var order in Model.PlacedOrders)
+        {
+            <div>
+                <div class="bg-body-secondary p-3 rounded mb-2">
+                    <div class="row">
+                        @*
+
+                           <div class="col-3">
+                               <p class="mb-1">Data zamówienia</p>
+                               <p class="mb-0 text-muted">@order.DatePlaced.ToLongDateString()</p>
+                           </div>
+                    *@
+
+                        <div class="col-3">
+                            <p class="mb-1">Numer Zamówienia</p>
+                            <p class="mb-0 text-muted">@order.Id</p>
                         </div>
-                        <div class="mb-2 d-flex flex-column ms-3">
-                            <p class="mb-1">@product.Name</p>
-                            <p class="text-muted mb-0">@product.Category.Name</p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                        <p class="text-opacity-75 text-center mb-2">
-                            <span>
-                                @product.Price.ToString("c")
-                            </span>
-                        </p>
-                        <div>
-                            <a asp-action="Details"
-                               asp-route-productId="@product.Id"
-                               class="btn btn-primary bg-gradient border-0 form-control">
-                                Details
-                            </a>
+                        <div class="col-3">
+                            <p class="mb-1">Łączny koszt</p>
+                            <p class="mb-0 text-muted">@order.TotalPrice.ToString("c")</p>
                         </div>
                     </div>
                 </div>
-            </a>
-        </div>
-    }
-    *@
-</div>
+
+                <div class="py-2 border-bottom">
+                    <div class="row">
+                        <div class="col-5">Produkt</div>
+                        <div class="col-3">Cena</div>
+                        <div class="col-4 text-end">Info</div>
+                    </div>
+                </div>
+
+                @foreach(var product in @order.Products)
+                {
+                    <div class="py-2 border-bottom">
+                        <div class="row align-items-center">
+                            <div class="col-5 d-flex align-items-center gap-3">
+                                <div class="flex  ratio ratio-1x1" style="width:10%">
+                                    <img src="@product.Product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
+                                </div>
+                                <span>
+                                    @product.Product.Name
+                                </span>
+                            </div>
+                            <div class="col-3">
+                                @product.Product.Price.ToString("c")
+                            </div>
+                            <div class="col-4 text-end">
+                                <a asp-controller="Home" asp-action="Details" asp-route-productId="@product.ProductId" class="text-body-secondary d-flex flex-column gap-1">
+                                    Zobacz produkt
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>

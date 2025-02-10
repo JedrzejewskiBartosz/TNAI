@@ -1,4 +1,7 @@
-﻿@model CategoryViewModel
+﻿@using StoreApp.Models.ViewModels.IViewModel
+@model IStoreFrontViewModel
+
+
 
 @{
     Layout = "_Layout";
@@ -9,24 +12,34 @@
     <div class="col">
             <h1 class="display-4">Z-kom</h1>
     </div>
-    <div class="col-3 d-flex flex-column justify-content-end">
-        <p class="mb-0">Kategorie</p>
-    </div>
 </div>
 <div class="row">
-    <div class="col">
+    <div class="col-8">
         @RenderBody() <!-- The actual page content goes here -->
     </div>
     <aside class="col-3">
-        <div class="vstack gap-4">
-            @foreach (var x in Model.CategoryList)
-            {
-                <a class="card nav-link text-body" asp-area="" asp-controller="Home" asp-action="Category" asp-route-categoryId="@x.Id">
-                    <div class="card-body">
-                        <p class="card-title mb-0 text-decoration-none">@x.Name</p>
-                    </div>
-                </a>
-            }
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                Kategorie
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a class="nav-link text-body text-decoration-none" asp-action="Index">
+                        Wszystkie
+                    </a>
+                </li>
+                @foreach (var x in Model.CategoryList)
+                {
+                    if(x.Name != "Default")
+                    {
+                        <li class="list-group-item">
+                            <a class="nav-link text-body text-decoration-none" asp-area="" asp-controller="Home" asp-action="Category" asp-route-categoryId="@x.Id">
+                                @x.Name
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
         </div>
     </aside>
 </div>

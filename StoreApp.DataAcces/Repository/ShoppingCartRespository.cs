@@ -1,0 +1,72 @@
+﻿using StoreApp.DataAcces.Data;
+using StoreApp.DataAcces.Repository.IRepository;
+using StoreApp.Models.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StoreApp.DataAcces.Repository
+{
+    class ShoppingCartRespository : Repository<ShoppingCartModel>, IShoppingCartRepository
+    {
+        private ApplicationDbContext _db;
+        public ShoppingCartRespository(ApplicationDbContext db) : base(db)
+        {
+            _db = db;
+        }
+
+        public void AddProductToCart(string cartID, int productId)
+        {
+            var cart = _db.ShoppingCart.FirstOrDefault(cart => cart.ShoppingCartId == cartID);
+            if(cart == null)
+            {
+                return;
+            }
+            var product = _db.Products.FirstOrDefault(p => p.Id == productId);
+            if(product == null)
+            {
+                return;
+            }
+            cart.ProductsID.Add(productId);
+            _db.ShoppingCart.Update(cart);
+            return;
+        }
+
+        public void RemoveProductFromCart(string cartID, int productId)
+        {
+            var cart = _db.ShoppingCart.FirstOrDefault(cart => cart.ShoppingCartId == cartID);
+            if (cart == null)
+            {
+                return;
+            }
+            var newProducts = cart.ProductsID.Where(product => product != productId).ToList();
+            if(newProducts == null)
+            {
+                return;
+            }
+            cart.ProductsID = newProducts;
+            _db.ShoppingCart.Update(cart);
+        }
+
+
+
+        public void Update(ShoppingCartModel ShoppingCart)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProductModel> GetCartProducts(string cartID)
+        {
+            var shoppingCart = _db.ShoppingCart.FirstOrDefault(it => it.ShoppingCartId == cartID);
+
+            if(shoppingCart == null)
+            {
+                return new List<ProductModel>();
+            }
+            return _db.Products.Where(x => shoppingCart.ProductsID.Contains(x.Id)).ToList();
+        }
+    }
+}
