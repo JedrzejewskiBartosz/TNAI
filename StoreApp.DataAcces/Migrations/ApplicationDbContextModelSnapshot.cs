@@ -475,9 +475,9 @@ namespace StoreApp.DataAcces.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReviewId"));
 
-                    b.Property<string>("ApplicationUserId")
+                    b.Property<string>("ByUser")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
@@ -493,13 +493,7 @@ namespace StoreApp.DataAcces.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("ReviewId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("ProductId");
 
@@ -671,19 +665,11 @@ namespace StoreApp.DataAcces.Migrations
 
             modelBuilder.Entity("StoreApp.Models.Models.ReviewModel", b =>
                 {
-                    b.HasOne("StoreApp.Models.Models.ApplicationUserModel", "ApplicationUser")
-                        .WithMany("Reviews")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("StoreApp.Models.Models.ProductModel", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
                 });
@@ -719,8 +705,6 @@ namespace StoreApp.DataAcces.Migrations
             modelBuilder.Entity("StoreApp.Models.Models.ApplicationUserModel", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("Reviews");
 
                     b.Navigation("WishList")
                         .IsRequired();

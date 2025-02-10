@@ -30,12 +30,6 @@ namespace StoreApp.DataAcces.Data
             .WithOne(o => o.ApplicationUser)
             .HasForeignKey(o => o.ApplicationUserId);
 
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUserModel>()
-            .HasMany(u => u.Reviews)
-            .WithOne(o => o.ApplicationUser)
-            .HasForeignKey(o => o.ApplicationUserId);
-
             modelBuilder.Entity<ApplicationUserModel>()
             .HasOne(u => u.WishList)
             .WithOne(w => w.ApplicationUser)
