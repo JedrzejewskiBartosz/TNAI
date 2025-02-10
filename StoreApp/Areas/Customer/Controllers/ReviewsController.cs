@@ -7,34 +7,55 @@ using StoreApp.DataAcces.Repository;
 using StoreApp.DataAcces.Repository.IRepository;
 using StoreApp.Models.Models;
 using StoreApp.Models.ViewModels;
+using System.Security.Claims;
 
 namespace StoreApp.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class ReviewsController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<ApplicationUserModel> _userManager;
         private readonly ILogger<ReviewsController> _logger;
 
-        public ReviewsController(IUnitOfWork unitOfWork, UserManager<ApplicationUserModel> userManager, ILogger<ReviewsController> logger)
+        public ReviewsController(IUnitOfWork unitOfWork, ILogger<ReviewsController> logger)
         {
             _unitOfWork = unitOfWork;
-            _userManager = userManager;
             _logger = logger;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(IFormCollection collection)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(IFormCollection collection)
         {
-            var responseValues = collection.ToDictionary();
-            var reviewModel = new ReviewModel(responseValues);
-            var user = await _userManager.GetUserAsync(User);
-            reviewModel.ApplicationUserId = user.Id;
+            _logger.LogInformation("Starting review creation.");
 
-            _unitOfWork.Review.Add(reviewModel);
-            _unitOfWork.Save();
+            try
+            {
+                var responseValues = collection.ToDictionary();
+                var reviewModel = new ReviewModel(responseValues);
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            return RedirectToAction("Details", "Home", new { productId = reviewModel.ProductId });
+                if (userId == null)
+                {
+                    _logger.LogWarning("User is not authenticated.");
+                    return Unauthorized();
+                }
+
+                reviewModel.ApplicationUserId = userId;
+
+                _logger.LogInformation("Review data: {Title}, {Description}, {Rating}", reviewModel.Title, reviewModel.Description, reviewModel.Rating);
+                _unitOfWork.Review.Add(reviewModel);
+                _unitOfWork.Save();
+
+                _logger.LogInformation("Review added successfully. Redirecting to details page.");
+
+                return RedirectToAction("Details", "Home", new { productId = reviewModel.ProductId });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while creating the review.");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }
