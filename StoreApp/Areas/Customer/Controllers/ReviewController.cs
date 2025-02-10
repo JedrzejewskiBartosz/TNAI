@@ -12,12 +12,12 @@ namespace StoreApp.Areas.Customer.Controllers
 {
     public class ReviewsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUserModel> _userManager;
 
-        public ReviewsController(ApplicationDbContext context, UserManager<ApplicationUserModel> userManager)
+        public ReviewsController(IUnitOfWork unitOfWork, UserManager<ApplicationUserModel> userManager)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
 
@@ -30,10 +30,9 @@ namespace StoreApp.Areas.Customer.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 review.ApplicationUserId = user.Id;
 
-                _context.Review.Add(review);
-                await _context.SaveChangesAsync();
+                _unitOfWork.Review.Add(review);
 
-                return RedirectToAction("Details", "Products", new { id = review.ProductId });
+                return RedirectToAction("Details", new { id = review.ProductId });
             }
 
             return View(review);
