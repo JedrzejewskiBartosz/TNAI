@@ -31,6 +31,8 @@ namespace StoreApp.Models.Models
 
         public List<OrderProductModel> OrderProducts { get; set; }
 
+        public List<ReviewModel> Reviews { get; set; } = new List<ReviewModel>();
+
         public ProductModel()
         {
 

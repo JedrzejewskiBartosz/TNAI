@@ -35,9 +35,30 @@
                            *Brak opisu*
                         </p>
                     }
-                <button class="btn btn-primary">
-                    Add to card
-                </button>
+                <h3>Reviews</h3>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <partial name="_WriteReview" model="new ReviewModel { ProductId = Model.Id }" />
+                }
+                else
+                {
+                    <p><a asp-area="Identity" asp-page="/Account/Login">Log in</a> to write a review.</p>
+                }
+                @if (Model.Reviews.Any())
+                {
+                    @foreach (var review in Model.Reviews)
+                    {
+                        <div class="review">
+                            <strong>@review.ApplicationUserId</strong> - <span>@review.Rating Stars</span>
+                            <p><b>@review.Title</b></p>
+                            <p>@review.Description</p>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No reviews yet.</p>
+                }
             </div>
         </div>
         <div class="col">

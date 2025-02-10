@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using StoreApp.Models;
 using StoreApp.Models.Models;
 using System.Text.Json;
@@ -20,11 +21,18 @@ namespace StoreApp.DataAcces.Data
         public DbSet<OrderDetailsModel> OrderDetails { get; set; }
         public DbSet<WishListModel> WishList { get; set; }
         public DbSet<ShoppingCartModel> ShoppingCart { get; set; }
+        public DbSet<ReviewModel> Review { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUserModel>()
             .HasMany(u => u.Orders)
+            .WithOne(o => o.ApplicationUser)
+            .HasForeignKey(o => o.ApplicationUserId);
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ApplicationUserModel>()
+            .HasMany(u => u.Reviews)
             .WithOne(o => o.ApplicationUser)
             .HasForeignKey(o => o.ApplicationUserId);
 
