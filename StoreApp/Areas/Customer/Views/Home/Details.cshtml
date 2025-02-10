@@ -1,68 +1,66 @@
 ﻿@model ProductModel
 
-<form>
-    <div class="container row row-cols-2 p-5">
-        <div class="col">
-            <div class="d-flex flex-column gap-3">
-                <div class="hstack gap-2">
-                    <a asp-action="Index" class="text-decoration-none">
-                        All Products
-                    </a>
-                    /<span class="text-body-secondary">@Model.Category.Name</span>
-                </div>
-                <h1 class="text-body">@Model.Name</h1>
-
-                <div class="hstack gap-3">
-                    <span>@Model.Price.ToString("c")</span>
-                    |
-                    <div >
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star"></i>
-                    </div>
-                </div>
-                    @if(Model.Description != null)
-                    {
-                        <p class="text-body-secondary">
-                            @Html.Raw(Model.Description)
-                        </p>
-                    }
-                    else
-                    {
-                        <p class="text-body-tertiary">
-                           *Brak opisu*
-                        </p>
-                    }
-                <h3>Reviews</h3>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <partial name="_WriteReview" model="new ReviewModel { ProductId = Model.Id }" />
-                }
-                else
-                {
-                    <p><a asp-area="Identity" asp-page="/Account/Login">Log in</a> to write a review.</p>
-                }
-                @if (Model.Reviews.Any())
-                {
-                    @foreach (var review in Model.Reviews)
-                    {
-                        <div class="review">
-                            <strong>@review.ApplicationUserId</strong> - <span>@review.Rating Stars</span>
-                            <p><b>@review.Title</b></p>
-                            <p>@review.Description</p>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <p>No reviews yet.</p>
-                }
+<div class="container row row-cols-2 p-5">
+    <div class="col">
+        <div class="d-flex flex-column gap-3">
+            <div class="hstack gap-2">
+                <a asp-action="Index" class="text-decoration-none">
+                    All Products
+                </a>
+                /<span class="text-body-secondary">@Model.Category.Name</span>
             </div>
-        </div>
-        <div class="col">
-            <img src="@Model.ImageUrl" class="w-100 rounded"/>
+            <h1 class="text-body">@Model.Name</h1>
+
+            <div class="hstack gap-3">
+                <span>@Model.Price.ToString("c")</span>
+                |
+                <div >
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star"></i>
+                </div>
+            </div>
+                @if(Model.Description != null)
+                {
+                    <p class="text-body-secondary">
+                        @Html.Raw(Model.Description)
+                    </p>
+                }
+                else
+                {
+                    <p class="text-body-tertiary">
+                        *Brak opisu*
+                    </p>
+                }
+            <h3>Reviews</h3>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <partial name="_WriteReview" model="new ReviewModel(Model.Id)" />
+            }
+            else
+            {
+                <p><a asp-area="Identity" asp-page="/Account/Login">Log in</a> to write a review.</p>
+            }
+            @if (Model.Reviews.Any())
+            {
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review">
+                        <strong>@review.ApplicationUserId</strong> - <span>@review.Rating Stars</span>
+                        <p><b>@review.Title</b></p>
+                        <p>@review.Description</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No reviews yet.</p>
+            }
         </div>
     </div>
-</form>
+    <div class="col">
+        <img src="@Model.ImageUrl" class="w-100 rounded"/>
+    </div>
+</div>

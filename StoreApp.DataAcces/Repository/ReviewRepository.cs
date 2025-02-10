@@ -21,7 +21,6 @@ namespace StoreApp.DataAcces.Repository
         public void Add(ReviewModel review)
         {
             _db.Add(review);
-            _db.SaveChanges();
         }
 
         public IEnumerable<ReviewModel> GetReviewsForProduct(int productId)
