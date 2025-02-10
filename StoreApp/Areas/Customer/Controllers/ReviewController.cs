@@ -21,22 +21,36 @@ namespace StoreApp.Areas.Customer.Controllers
             _userManager = userManager;
         }
 
-        // POST: Reviews/Create
+        //// POST: Reviews/Create
+        //[HttpPost]
+        //public async Task<IActionResult> Create(ReviewModel review)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = await _userManager.GetUserAsync(User);
+        //        review.ApplicationUserId = user.Id;
+
+        //        _unitOfWork.Review.Add(review);
+        //        _unitOfWork.Save();
+
+        //        return RedirectToAction("Details", new { id = review.ProductId });
+        //    }
+
+        //    return View(review);
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Create(ReviewModel review)
+        public async Task<IActionResult> Create(IFormCollection collection)
         {
-            if (ModelState.IsValid)
-            {
-                var user = await _userManager.GetUserAsync(User);
-                review.ApplicationUserId = user.Id;
+            var responseValues = collection.ToDictionary();
+            var reviewModel = new ReviewModel(responseValues);
+            var user = await _userManager.GetUserAsync(User);
+            reviewModel.ApplicationUserId = user.Id;
 
-                _unitOfWork.Review.Add(review);
-                _unitOfWork.Save();
+            _unitOfWork.Review.Add(reviewModel);
+            _unitOfWork.Save();
 
-                return RedirectToAction("Details", new { id = review.ProductId });
-            }
-
-            return View(review);
+            return RedirectToAction("Details", new { id = reviewModel.ProductId });
         }
     }
 }

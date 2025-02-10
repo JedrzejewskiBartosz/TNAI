@@ -38,7 +38,7 @@ namespace StoreApp.Areas.Customer.Controllers
         public IActionResult Details(int productId)
         {
             
-            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == productId, includeProperties: "Category");
+            ProductModel productsList = _unitOfWork.Product.Get(u=>u.Id == productId, includeProperties: "Category,Reviews");
             return View(productsList);
 
         }

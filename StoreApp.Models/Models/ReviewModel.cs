@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -25,5 +26,13 @@ namespace StoreApp.Models.Models
         public string ApplicationUserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUserModel ApplicationUser { get; set; }
+
+        public ReviewModel() { }
+        public ReviewModel(Dictionary<string, StringValues> responseValues)
+        {
+            Title = responseValues["title"];
+            Description = responseValues["description"];
+            Rating = Int32.Parse(responseValues["rating"]);
+        }
     }
 }
