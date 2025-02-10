@@ -25,10 +25,5 @@ namespace StoreApp.Models.Models
         public string ApplicationUserId { get; set; }
         [ForeignKey("UserId")]
         public ApplicationUserModel ApplicationUser { get; set; }
-
-        public ReviewModel(int productId)
-        {
-            ProductId = productId;
-        }
     }
 }
