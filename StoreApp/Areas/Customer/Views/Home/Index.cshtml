@@ -1,41 +1,25 @@
-﻿@model CategoryViewModel
+﻿@model HomeViewModel
 
 @{
     Layout = "_StoreFrontLayout";
 }
-<div class="">
-    <div class="vstack gap-4">
+
+<form asp-action="Index" method="get" class="hstack gap-2 align-items-center mb-4">
+    <input type="text" name="searchQuery" class="form-control" placeholder="Wyszukaj po nazwie produktu..." value="@Context.Request.Query["searchQuery"]" />
+    <button type="submit" class="btn btn-secondary flex-shrink-0"><i class="bi bi-search mr-2"></i> Szukaj</button>
+</form>
+@if (!Model.ProductModels.Any()) {
+    <div class="alert alert-dark mt-3">Nie znaleziono.</div>
+}
+else {
+    <div class="row row-cols-3 g-3">
         @foreach (var product in Model.ProductModels)
         {
-            <div class="nav-link text-body hstack gap-3 p-4 bg-light">
-                <a asp-action="Details" asp-route-productId="@product.Id" class="text-decoration-none">
-                <div class="d-flex flex-row justify-content-between w-100">
-                    <div class="d-flex flex-row">
-                        <div class="w-100 flex">
-                            <img src="@product.ImageUrl" class="bg-secondary img-thumbnail" style="height: 5rem; width: 5rem" />
-                        </div>
-                        <div class="mb-2 d-flex flex-column ms-3">
-                            <p class="mb-1">@product.Name</p>
-                            <p class="text-muted mb-0">@product.Category.Name</p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                        <p class="text-opacity-75 text-center mb-2">
-                            <span>
-                                @product.Price.ToString("c")
-                            </span>
-                        </p>
-                        <div>
-                            <a asp-action="Details"
-                               asp-route-productId="@product.Id"
-                               class="btn btn-primary bg-gradient border-0 form-control">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                </a>
+            <div class="col">
+                <partial name="_ProductCard" model="product" />
+
             </div>
         }
     </div>
-</div>
+}
+

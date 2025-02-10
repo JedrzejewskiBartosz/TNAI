@@ -1,0 +1,55 @@
+﻿@model ShoppingCartViewModel
+
+<h1 class="my-4">Koszyk</h1>
+
+<div class="container row gap-4">
+    <div class="col">
+         @foreach(var product in Model.Products)
+        {
+            <div class="bg-body-tertiary rounded text-decoration-none text-body-secondary p-4 row mb-2">
+                <div class="col-2">
+                    <div class="w-100 flex">
+                    <img src="@product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" style="height:6rem; width:6rem;" />
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="d-flex flex-column justify-content-between gap-2">
+                        <span class="mb-1">@product.Name</span>
+                        <span class="text-body">@product.Price.ToString("c")</span>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="d-flex justify-items-end">
+                        <button class="btn btn-outline-secondary btn-sm">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-4">
+       
+    <div class="card" >
+          <div class="card-body gap-4">
+            <h3 class="card-title mb-4">Details</h3>
+            <div class="d-flex w-100 justify-content-between">
+                <span class="text-background-seconday">Summary</span>
+                <span>@Model.GetCombinedCost().ToString("c")</span>
+            </div>
+          </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary m-2">
+                    Przejdz do płatności
+                </a>
+            }
+
+            @if(!User.Identity.IsAuthenticated)
+            {
+                <button class="btn btn-secondary m-2" disabled>
+                    Zaloguj / Zarejestruj się
+                </button>
+            }
+    </div>
+ </div>

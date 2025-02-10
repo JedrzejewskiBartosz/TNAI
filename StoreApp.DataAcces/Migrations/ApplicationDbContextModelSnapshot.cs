@@ -270,6 +270,62 @@ namespace StoreApp.DataAcces.Migrations
                         });
                 });
 
+            modelBuilder.Entity("StoreApp.Models.Models.OrderDetailsModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Apartament")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExpirationDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ShippingProvider")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderDetails");
+                });
+
             modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
                 {
                     b.Property<int>("Id")
@@ -282,6 +338,9 @@ namespace StoreApp.DataAcces.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("OrderDetailsId")
+                        .HasColumnType("int");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -293,7 +352,27 @@ namespace StoreApp.DataAcces.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
+                    b.HasIndex("OrderDetailsId");
+
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("StoreApp.Models.Models.OrderProductModel", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProductModel");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.ProductModel", b =>
@@ -317,9 +396,6 @@ namespace StoreApp.DataAcces.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderModelId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
@@ -329,8 +405,6 @@ namespace StoreApp.DataAcces.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderModelId");
 
                     b.HasIndex("WishListModelId");
 
@@ -391,6 +465,27 @@ namespace StoreApp.DataAcces.Migrations
                             Name = "Logitech G PRO X",
                             Price = 90.0
                         });
+                });
+
+            modelBuilder.Entity("StoreApp.Models.Models.ShoppingCartModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ProductsID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShoppingCartId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCart");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.WishListModel", b =>
@@ -490,7 +585,34 @@ namespace StoreApp.DataAcces.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("StoreApp.Models.Models.OrderDetailsModel", "OrderDetails")
+                        .WithMany()
+                        .HasForeignKey("OrderDetailsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("StoreApp.Models.Models.OrderProductModel", b =>
+                {
+                    b.HasOne("StoreApp.Models.Models.OrderModel", "Order")
+                        .WithMany("Products")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("StoreApp.Models.Models.ProductModel", "Product")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.ProductModel", b =>
@@ -500,10 +622,6 @@ namespace StoreApp.DataAcces.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("StoreApp.Models.Models.OrderModel", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderModelId");
 
                     b.HasOne("StoreApp.Models.Models.WishListModel", null)
                         .WithMany("Products")
@@ -526,6 +644,11 @@ namespace StoreApp.DataAcces.Migrations
             modelBuilder.Entity("StoreApp.Models.Models.OrderModel", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("StoreApp.Models.Models.ProductModel", b =>
+                {
+                    b.Navigation("OrderProducts");
                 });
 
             modelBuilder.Entity("StoreApp.Models.Models.WishListModel", b =>

@@ -1,24 +1,29 @@
-﻿@model CategoryProductViewModel
+﻿@model CategoryViewModel
 @{
     Layout = "_StoreFrontLayout";
 }
 
-<div class="">
-    <h1>@Model.Category.Name </h1>
-    @foreach (var product in @Model.ProductModels)
+<form asp-action="Category" method="get" class="hstack gap-2 align-items-center mb-4">
+    <input type="hidden" name="categoryID" value="@Model.Category.Id" />
+    <input type="text" name="searchQuery" class="form-control" placeholder="Wyszukaj po nazwie produktu..." value="@Context.Request.Query["searchQuery"]" />
+    <button type="submit" class="btn btn-secondary flex-shrink-0"><i class="bi bi-search mr-2"></i> Szukaj</button>
+</form>
 
-    {
-        <a asp-controller="Home" asp-action="Product" asp-route-id="@product.Id"
-           class="nav-link text-body hstack gap-3 p-4 bg-light">
-            <div class="bg-secondary img-thumbnail" style="height: 5rem; width: 5rem">
-            </div>
-            <div class="rounded-1">
-                <div class="mb-2">
-                    <p class="mb-1">@product.Name</p>
-                    <p class="text-muted mb-0">@product.Category</p>
-                </div>
-                <p class="mb-0">@product.Price zł</p>
-            </div>
-        </a>
-    }
+<div class="bg-body border bg-body-tertiary px-4 py-2 rounded mb-4">
+    <span class="fs-4">@Model.Category.Name </span>
 </div>
+@if (!Model.ProductModels.Any())
+{
+    <div class="alert alert-dark mt-3 text-center">Nie znaleziono.</div>
+}
+else
+{
+    <div class="row row-cols-3 g-3">
+        @foreach (var product in Model.ProductModels)
+        {
+            <div class="col">
+                <partial name="_ProductCard" model="product" />
+            </div>
+        }
+    </div>
+}

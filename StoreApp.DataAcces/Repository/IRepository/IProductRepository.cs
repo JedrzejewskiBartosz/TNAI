@@ -11,5 +11,6 @@ namespace StoreApp.DataAcces.Repository.IRepository
     public interface IProductRepository : IRepository<ProductModel>
     {
         void Update(ProductModel product);
+        List<ProductModel> ListProducts(List<int> productsId);
     }
 }

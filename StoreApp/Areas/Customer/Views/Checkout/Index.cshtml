@@ -1,0 +1,125 @@
+﻿@model CheckoutViewModel
+
+
+<div class="container row gap-4">
+    <div class="col">
+        <h1 class="my-4">Płatność</h1>
+        <form asp-controller="Checkout" asp-action="Buy">
+            <div class="mb-5 d-flex flex-column gap-2">
+                <h2 class="fs-3">Dane kontaktowe</h2>
+                <div class="">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="w-50">
+                        <label for="name" class="form-label">Imię</label>
+                        <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                    <div class="w-50">
+                        <label for="surname" class="form-label">Nazwisko</label>
+                        <input type="text" class="form-control" name="surname" id="surname">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="mb-5 d-flex flex-column gap-2">
+                <h2 class="fs-3">Szczegóły Płatności</h2>
+                <div class="">
+                    <label for="cardNo" class="form-label">Numer karty</label>
+                    <input type="text" class="form-control" name="cardNo" id="cardNo" aria-describedby="emailHelp">
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="w-75">
+                        <label for="expirationDate" class="form-label">Data ważności</label>
+                        <input type="text" class="form-control" name="expirationDate" id="expirationDate">
+                    </div>
+                    <div class="w-25">
+                        <label for="cnn" class="form-label">CNN</label>
+                        <input type="text" class="form-control" name="cnn" id="cnn">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-5 d-flex flex-column gap-2">
+                <h2 class="fs-3">Adres Wysyłki</h2>
+                <div class="d-flex gap-2 align-items-center">
+                    <div>
+                        <input type="radio" class="btn-check" name="provider" id="inpost" value="inpost" autocomplete="off">
+                        <label class="btn btn-secondary" for="inpost">InPost</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="btn-check" name="provider" id="dhl" value="dhl" autocomplete="off">
+                        <label class="btn btn-secondary" for="dhl">DHL</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="btn-check" name="provider" id="fedex" value="fedex" autocomplete="off">
+                        <label class="btn btn-secondary" for="fedex">Fedex</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="btn-check" name="provider" id="dpd" value="dpd" autocomplete="off">
+                        <label class="btn btn-secondary" for="dpd">DPD</label>
+                    </div>
+                </div>
+                <div class="">
+                    <label for="street" class="form-label">Ulica</label>
+                    <input type="text" class="form-control" name="street" id="street">
+                </div>
+                <div>
+                    <label for="apartament" class="form-label">Numer apartamentu</label>
+                    <input type="text" class="form-control" name="apartament" id="apartament">
+                </div>
+                <div class="d-flex gap-2 align-items-center">
+                    <div class="w-75">
+                        <label for="city" class="form-label">Miasto</label>
+                        <input type="text" class="form-control" name="city" id="city">
+                    </div>
+                    <div class="w-25">
+                        <label for="zipCode" class="form-label">Kod pocztowy</label>
+                        <input type="text" class="form-control" name="zipCode" id="zipCode">
+                    </div>
+                </div>
+            </div>
+
+            <button  type="submit" class="btn btn-primary">Przejdź do płatności</button>
+        </form>
+    </div>
+    <div class="col-5 ">
+        @foreach (var product in Model.Products)
+        {
+            <div class="p-3 mb-2 bg-body-tertiary rounded text-decoration-none text-body-secondary">
+                <div class="row align-items-center">
+                    <div class="col-2">
+                        <div class="w-100 flex  ratio ratio-1x1">
+                            <img src="@product.ImageUrl" class="bg-secondary img-thumbnail object-fit-contain" />
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="d-flex flex-column justify-content-between gap-1">
+                            <span>@product.Name</span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="d-flex flex-column justify-content-between gap-1">
+                            <span class="text-body">@product.Price.ToString("c")</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="p-3 my-3">
+            <div class="row align-items-center">
+                <div class="col-9">
+                    <div class="d-flex flex-column justify-content-between gap-1">
+                        <span class="text-body">Razem</span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="d-flex flex-column justify-content-between gap-1">
+                        <span class="text-body">@Model.GetCombinedCost().ToString("c")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>

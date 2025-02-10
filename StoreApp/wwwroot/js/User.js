@@ -7,18 +7,18 @@ function loadDataTable() {
     dataTable = $('#tblData').DataTable({
         "ajax": { url: '/admin/user/getall' },
         "columns": [
-            { data: 'userName', "width": "15%" },
             { data: 'name', "width": "15%" },
-            { data: 'role', "width": "15%" },
+            { data: 'userName', "width": "20%" },
+            { data: 'role', "width": "10%" },
             {
                 data: 'id',
                 "render": function (data) {
-                    return `<div class="w-75 btn-group" role="group">
-                     <a href="/admin/user/edit?id=${data}" class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>               
-                     <a onClick=Delete('/admin/user/delete/${data}') class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>
+                    return `<div class="btn-group justify-content-end" role="group">
+                     <a href="/admin/user/edit?id=${data}" class="btn btn-outline-teritary btn-sm"> <i class="bi bi-pencil-square"></i></a>               
+                     <a onClick=Delete('/admin/user/delete/${data}') class="btn btn-outline-teritary btn-sm "> <i class="bi bi-trash-fill"></i></a>
                     </div>`
                 },
-                "width": "25%"
+                "width": "5%"
             }
         ]
     });
@@ -26,13 +26,15 @@ function loadDataTable() {
 
 function Delete(url) {
     Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Delete User?",
+        text: "You won't be able to revert this",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        color:"var(--bs-body-color)",
+        background:"var(--bs-secondary-bg)",
+        confirmButtonText: "Delete"
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({

@@ -2,31 +2,41 @@
 @model List<ProductModel> 
 <partial name="_Notification" />
 
-<div class="container">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">
-                Product List
-            </h2>
+<div class="container row pt-4">
+    <div class="col-2 pt-5">
+        <partial name="_ManagmentLayout"  />
+    </div>
+    <div class="col">
+        <div class="">
+            <div class="row align-items-baseline">
+                <div class="col-6">
+                    <h2 class="text-background-primary">
+                        Product List
+                    </h2>
+                </div>
+                <div class="col-6 text-end">
+                    <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+                        Create New Product
+                    </a>
+                </div>
+             </div>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
-                Create New Product
-            </a>
-        </div>
+
+        <table id="tblData" class="table table-borderless table-dark rounded">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+                <tbody class="table-group-divider">
+
+            </tbody>
+        </table>
+
     </div>
 </div>
-
-<table id="tblData" class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Category</th>
-        </tr>
-    </thead>
-</table>
-
 @section Scripts{
     <script src="~/js/product.js"></script>
 }
