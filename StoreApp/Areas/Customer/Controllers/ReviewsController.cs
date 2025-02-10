@@ -27,12 +27,23 @@ namespace StoreApp.Areas.Customer.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(IFormCollection collection)
         {
+            _logger.LogInformation("Starting review creation.");
+
             try
             {
                 var responseValues = collection.ToDictionary();
                 var reviewModel = new ReviewModel(responseValues);
-                reviewModel.ByUser = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+                if (userId == null)
+                {
+                    _logger.LogWarning("User is not authenticated.");
+                    return Unauthorized();
+                }
+
+                reviewModel.ApplicationUserId = userId;
+
+                _logger.LogInformation("Review data: {Title}, {Description}, {Rating}", reviewModel.Title, reviewModel.Description, reviewModel.Rating);
                 _unitOfWork.Review.Add(reviewModel);
                 _unitOfWork.Save();
 

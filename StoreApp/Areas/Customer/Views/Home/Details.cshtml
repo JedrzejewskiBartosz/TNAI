@@ -48,7 +48,7 @@
                 @foreach (var review in Model.Reviews)
                 {
                     <div class="review">
-                        <strong>@review.ByUser</strong> - <span>@review.Rating Stars</span>
+                        <strong>@review.ApplicationUserId</strong> - <span>@review.Rating Stars</span>
                         <p><b>@review.Title</b></p>
                         <p>@review.Description</p>
                     </div>

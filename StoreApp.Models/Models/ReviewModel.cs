@@ -20,10 +20,13 @@ namespace StoreApp.Models.Models
         [Required]
         [Range(1,5)]
         public int Rating { get; set; }
-        public string ByUser { get; set; }
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         public ProductModel Product { get; set; }
+        public string ApplicationUserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUserModel ApplicationUser { get; set; }
+
         public ReviewModel() { }
         public ReviewModel(Dictionary<string, StringValues> responseValues)
         {
