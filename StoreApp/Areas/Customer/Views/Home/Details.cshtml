@@ -36,13 +36,13 @@
                 }
             @if (User.Identity.IsAuthenticated)
             {
-                <partial name="_WriteReview" model="new ReviewModel {ProductId = @Model.Id}" />
+                <partial name="_WriteReview" model="new ReviewViewModel(Model.Id)" />
             }
             else
             {
                 <p><a asp-area="Identity" asp-page="/Account/Login">Log in</a> to write a review.</p>
             }
-            <h3>Reviews</h3>
+            <h3>Recenzje</h3>
             @if (Model.Reviews.Any())
             {
                 @foreach (var review in Model.Reviews)
@@ -56,7 +56,7 @@
             }
             else
             {
-                <p>No reviews yet.</p>
+                <p>Brak recenzji.</p>
             }
         </div>
     </div>

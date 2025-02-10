@@ -11,5 +11,11 @@ namespace StoreApp.Models.ViewModels
     {
         public ReviewModel Review { get; set; }
 
+        public ReviewViewModel(int productId)
+        {
+            Review = new ReviewModel();
+            Review.ProductId = productId;
+        }
+
     }
 }

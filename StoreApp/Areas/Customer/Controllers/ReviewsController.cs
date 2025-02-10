@@ -14,30 +14,14 @@ namespace StoreApp.Areas.Customer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUserModel> _userManager;
+        private readonly ILogger<ReviewsController> _logger;
 
-        public ReviewsController(IUnitOfWork unitOfWork, UserManager<ApplicationUserModel> userManager)
+        public ReviewsController(IUnitOfWork unitOfWork, UserManager<ApplicationUserModel> userManager, ILogger<ReviewsController> logger)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _logger = logger;
         }
-
-        //// POST: Reviews/Create
-        //[HttpPost]
-        //public async Task<IActionResult> Create(ReviewModel review)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var user = await _userManager.GetUserAsync(User);
-        //        review.ApplicationUserId = user.Id;
-
-        //        _unitOfWork.Review.Add(review);
-        //        _unitOfWork.Save();
-
-        //        return RedirectToAction("Details", new { id = review.ProductId });
-        //    }
-
-        //    return View(review);
-        //}
 
         [HttpPost]
         public async Task<IActionResult> Create(IFormCollection collection)
@@ -50,7 +34,10 @@ namespace StoreApp.Areas.Customer.Controllers
             _unitOfWork.Review.Add(reviewModel);
             _unitOfWork.Save();
 
-            return RedirectToAction("Details", new { id = reviewModel.ProductId });
+            // Log the productId to confirm it's correct
+            _logger.LogInformation($"Review created for ProductId: {reviewModel.ProductId}");
+
+            return RedirectToAction("Details", "Home", new { productId = reviewModel.ProductId });
         }
     }
 }
