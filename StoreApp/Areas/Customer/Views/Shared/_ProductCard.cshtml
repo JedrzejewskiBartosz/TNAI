@@ -17,6 +17,12 @@
             <a asp-action="Details" asp-route-productId="@Model.Id" class="text-body-secondary d-flex flex-column gap-1">
                Zobacz Więcej >
              </a>
+            <form asp-controller="WishList" method="post" asp-action="AddToWishList">
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <button class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-heart-fill"></i>
+                </button>
+            </form>
             <form asp-controller="ShoppingCart" asp-action="AddItem" asp-route-productId="@Model.Id">
                 <input type="hidden" name="categoryID" value="@Model.Category.Id" />
                 <button class="btn btn-outline-secondary btn-sm">
@@ -27,3 +33,8 @@
     </div>
 </div>
 
+
+@section Script{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/wishList.js"></script>
+}

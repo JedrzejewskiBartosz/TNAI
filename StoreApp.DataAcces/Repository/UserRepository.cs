@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,6 +31,11 @@ namespace StoreApp.DataAcces.Repository
         {
             var userRole = _db.UserRoles.FirstOrDefault(x => x.UserId == userModel.Id);
             return userRole != null ? userRole.ToString() : "No role found";
+        }
+
+        public string GetUserId(ClaimsPrincipal user)
+        {
+            return user.FindFirstValue(ClaimTypes.NameIdentifier);
         }
     }
 }

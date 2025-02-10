@@ -14,7 +14,6 @@ namespace StoreApp.DataAcces.Repository.IRepository
         IOrderRepository Order { get; }
         IWishListRepository WishList { get; }
         IShoppingCartRepository ShoppingCart { get; }
-        IReviewRepository Review { get; }
         void Save();
     }
 }

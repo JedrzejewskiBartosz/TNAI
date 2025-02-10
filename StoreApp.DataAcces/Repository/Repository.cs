@@ -38,7 +38,7 @@ namespace StoreApp.DataAcces.Repository
                     query = query.Include(includeProp);
                 }
             }
-            return query.First(filter);
+            return query.FirstOrDefault(filter);
         }
 
         public IEnumerable<T> GetAll(string? includeProperties = null)

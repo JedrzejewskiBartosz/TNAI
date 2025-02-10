@@ -29,9 +29,8 @@ namespace StoreApp.Models.Models
         public CategoryModel? Category { get; set; }
         public string? ImageUrl { get; set; }
 
+        [ValidateNever]
         public List<OrderProductModel> OrderProducts { get; set; }
-
-        public List<ReviewModel> Reviews { get; set; } = new List<ReviewModel>();
 
         public ProductModel()
         {

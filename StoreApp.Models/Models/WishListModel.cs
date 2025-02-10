@@ -12,7 +12,7 @@ namespace StoreApp.Models.Models
     {
         [Key]
         public int Id { get; set; }
-        public List<ProductModel> Products { get; set; }
+        public List<int> ProductsID { get; set; } = new List<int>();
         public double TotalPrice { get; set; } = 0;
 
         public string ApplicationUserId { get; set; }

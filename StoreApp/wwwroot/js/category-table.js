@@ -12,10 +12,14 @@ function loadDataTable() {
             {
                 data: 'id',
                 "render": function (data) {
-                    return `<div class="btn-group justify-content-end" role="group">
-                     <a href="/admin/product/upsert?id=${data}" class="btn btn-outline-teritary btn-sm"> <i class="bi bi-pencil-square"></i></a>               
-                     <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-outline-teritary btn-sm "> <i class="bi bi-trash-fill"></i></a>
+                    if (data != 999) {
+                        return `<div class="btn-group justify-content-end" role="group">
+                     <a href="/admin/category/edit?id=${data}" class="btn btn-outline-teritary btn-sm"> <i class="bi bi-pencil-square"></i></a>               
+                     <a onClick="Delete('/admin/category/delete/${data}')" class="btn btn-outline-teritary btn-sm "> <i class="bi bi-trash-fill"></i></a>
                     </div>`
+                    } else {
+                        return '';
+                    }
                 },
                 "width": "5%"
             },

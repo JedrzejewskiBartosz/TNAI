@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +16,6 @@ namespace StoreApp.Models.Models
         public string Role { get; set; }
 
         public ICollection<OrderModel> Orders { get; set; }
-        public ICollection<ReviewModel> Reviews { get; set; }
         public WishListModel WishList { get; set; }
     }
 }

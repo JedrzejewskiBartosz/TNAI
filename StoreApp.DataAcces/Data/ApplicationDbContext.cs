@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using StoreApp.Models;
 using StoreApp.Models.Models;
 using System.Text.Json;
@@ -21,18 +20,11 @@ namespace StoreApp.DataAcces.Data
         public DbSet<OrderDetailsModel> OrderDetails { get; set; }
         public DbSet<WishListModel> WishList { get; set; }
         public DbSet<ShoppingCartModel> ShoppingCart { get; set; }
-        public DbSet<ReviewModel> Review { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUserModel>()
             .HasMany(u => u.Orders)
-            .WithOne(o => o.ApplicationUser)
-            .HasForeignKey(o => o.ApplicationUserId);
-
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUserModel>()
-            .HasMany(u => u.Reviews)
             .WithOne(o => o.ApplicationUser)
             .HasForeignKey(o => o.ApplicationUserId);
 
@@ -47,6 +39,10 @@ namespace StoreApp.DataAcces.Data
                    v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
                    v => JsonSerializer.Deserialize<List<int>>(v, new JsonSerializerOptions())
                );
+
+            modelBuilder.Entity<CategoryModel>().HasData(
+                new CategoryModel { Id = 999, Name = "Default", DisplayOrder = 0 }
+            );
 
             modelBuilder.Entity<OrderProductModel>()
                 .HasKey(op => new { op.OrderId, op.ProductId });

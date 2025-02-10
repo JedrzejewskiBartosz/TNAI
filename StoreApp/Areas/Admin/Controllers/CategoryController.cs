@@ -70,39 +70,48 @@ namespace StoreApp.Areas.Admin.Controllers
             return View(obj);
         }
 
+        //public IActionResult Delete(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    CategoryModel? obj = _unitOfWork.Category.Get(x => x.Id == id);
+        //    if (obj == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(obj);
+        //}
+
+        #region API CALLS
+
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
             CategoryModel? obj = _unitOfWork.Category.Get(x => x.Id == id);
+            List<ProductModel> productList = _unitOfWork.Product.GetAll().ToList();
             if (obj == null)
             {
                 return NotFound();
             }
-            return View(obj);
-        }
 
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            CategoryModel? obj = _unitOfWork.Category.Get(x => x.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
+           productList = productList.Where(x => x.CategoryId == obj.Id).ToList();
+           productList.ForEach(x => x.CategoryId = 999);
             _unitOfWork.Category.Remove(obj);
             _unitOfWork.Save();
             TempData["succes"] = "Category removed successfully";
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public IActionResult Getall()
         {
             List<CategoryModel> obj = _unitOfWork.Category.GetAll().ToList();
             return Json(new { data = obj });
         }
+
+        #endregion
     }
 }
