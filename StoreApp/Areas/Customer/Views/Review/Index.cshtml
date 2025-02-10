@@ -1,0 +1,10 @@
+﻿@model IEnumerable<StoreApp.Models.Models.ReviewModel>
+
+<h3>Customer Reviews</h3>
+@foreach (var review in Model)
+{
+    <div class="review">
+        <p><strong>@review.ApplicationUser.UserName</strong>: @review.Review</p>
+        <p>Rating: @review.Rating/5</p>
+    </div>
+}
